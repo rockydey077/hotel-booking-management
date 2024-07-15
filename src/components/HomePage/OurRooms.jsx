@@ -21,7 +21,7 @@ const OurRooms = () => {
             <div className='card card-compact bg-base-100 w-96 shadow-xl'>
               <figure>
                 <Image
-                  src={room.image}
+                  src={room.image[0]}
                   alt={room.room_name}
                   width={500}
                   height={200}
