@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "room_name": "Single Room",
+    "price": 50,
+    "image": "https://i.ibb.co/dcVNgpL/img-1-jpg.webp",
+    "room_type": "AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 2,
+    "room_name": "Single Room",
+    "price": 40,
+    "image": "https://i.ibb.co/R7r2XzQ/img-2-jpg.webp",
+    "room_type": "Non-AC",
+    "description": "An affordable single room without air conditioning, ideal for budget travelers."
+  },
+  {
+    "id": 3,
+    "room_name": "Double Room",
+    "price": 70,
+    "image": "https://i.ibb.co/dcVNgpL/img-1-jpg.webp",
+    "room_type": "AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 4,
+    "room_name": "Double Room",
+    "price": 60,
+    "image": "https://i.ibb.co/Dw9hZBb/img-3-jpg.webp",
+    "room_type": "Non-AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 5,
+    "room_name": "Family Room",
+    "price": 100,
+    "image": "https://i.ibb.co/R7r2XzQ/img-2-jpg.webp",
+    "room_type": "AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 6,
+    "room_name": "Family Room",
+    "price": 90,
+    "image": "https://i.ibb.co/dcVNgpL/img-1-jpg.webp",
+    "room_type": "Non-AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 7,
+    "room_name": "Suite",
+    "price": 150,
+    "image": "https://i.ibb.co/Dw9hZBb/img-3-jpg.webp",
+    "room_type": "AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 8,
+    "room_name": "Suite",
+    "price": 130,
+    "image": "https://i.ibb.co/R7r2XzQ/img-2-jpg.webp",
+    "room_type": "Non-AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 9,
+    "room_name": "Deluxe Room",
+    "price": 120,
+    "image": "https://i.ibb.co/dcVNgpL/img-1-jpg.webp",
+    "room_type": "AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 10,
+    "room_name": "Deluxe Room",
+    "price": 100,
+    "image": "https://i.ibb.co/Dw9hZBb/img-3-jpg.webp",
+    "room_type": "Non-AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 11,
+    "room_name": "Executive Room",
+    "price": 180,
+    "image": "https://i.ibb.co/R7r2XzQ/img-2-jpg.webp",
+    "room_type": "AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  },
+  {
+    "id": 12,
+    "room_name": "Executive Room",
+    "price": 160,
+    "image": "https://i.ibb.co/Dw9hZBb/img-3-jpg.webp",
+    "room_type": "Non-AC",
+    "description": "A cozy single room with air conditioning, perfect for solo travelers."
+  }
+]
