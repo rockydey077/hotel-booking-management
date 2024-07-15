@@ -9,12 +9,17 @@ import "swiper/css/pagination";
 import { Keyboard, Scrollbar, Navigation } from "swiper/modules";
 import { TbAirConditioning } from "react-icons/tb";
 import { PiTelevisionSimpleFill } from "react-icons/pi";
-import { FaWifi } from "react-icons/fa";
+import { FaFacebook, FaWhatsapp, FaWifi } from "react-icons/fa";
 import { FaKitchenSet } from "react-icons/fa6";
-import { MdOutlineElevator } from "react-icons/md";
+import { MdEmail, MdOutlineElevator } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
 import { MdOutlineDoorFront } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
+import { GrGallery } from "react-icons/gr";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { FaRegShareSquare } from "react-icons/fa";
+import ImageSlider from "@/utilities/ImageSlider";
 
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
@@ -41,7 +46,7 @@ const DetailsPage = ({ params }) => {
 
   return (
     <div className=''>
-      <div className=''>
+      <div className='relative'>
         <Swiper
           slidesPerView={1}
           centeredSlides={false}
@@ -67,7 +72,32 @@ const DetailsPage = ({ params }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        
+        <div className='absolute right-5 bg-color4 bottom-5 z-10'>
+          <button
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+            className='flex p-3 border-2 border-color3 rounded items-center gap-2 font-medium text-lg'>
+            <GrGallery className='text-xl' /> View all photos
+          </button>
+        </div>
+        <div>
+          <details className='dropdown dropdown-bottom dropdown-end bg-color4 absolute right-5 top-5 z-10'>
+            <summary className='flex p-3 border-2 border-color3 rounded items-center gap-2 font-medium text-lg cursor-pointer'>
+              <FaRegShareSquare />
+              Share
+            </summary>
+            <ul className='flex flex-wrap gap-5 mt-2 dropdown-content bg-base-100 rounded-box z-[1] w-72 p-5 shadow'>
+              <li className='flex gap-2 text-base items-center'>
+                <FaFacebook /> Facebook
+              </li>
+              <li className='flex gap-2 text-base items-center'>
+                <FaWhatsapp /> Whatsapp
+              </li>
+              <li className='flex gap-2 text-base items-center'>
+                <MdEmail /> Email
+              </li>
+            </ul>
+          </details>
+        </div>
       </div>
       <div className='max-w-screen-xl flex gap-20 mx-auto mt-8 mb-16'>
         <div className='lg:w-3/5'>
@@ -142,6 +172,16 @@ const DetailsPage = ({ params }) => {
           </div>
         </div>
       </div>
+      <dialog id='my_modal_3' className='modal'>
+        <div className='modal-box bg-[#00000022] rounded-none max-w-screen-2xl h-screen p-0'>
+          <form method='dialog'>
+            <button className='btn z-50 bg-color4 btn-sm btn-circle btn-ghost absolute right-2 top-2'>
+              ✕
+            </button>
+          </form>
+          <ImageSlider room={room} />
+        </div>
+      </dialog>
       <ToastContainer />
     </div>
   );
