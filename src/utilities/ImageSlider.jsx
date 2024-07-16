@@ -11,11 +11,11 @@ import Image from "next/image";
 const ImageSlider = ({ room }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div>
+    <div className=''>
       <Swiper
         style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
+          "--swiper-navigation-color": "#2ECA7F",
+          "--swiper-pagination-color": "#2ECA7F",
         }}
         loop={true}
         spaceBetween={10}
@@ -24,8 +24,14 @@ const ImageSlider = ({ room }) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className='mySwiper2 mb-10'>
         {room?.image?.map((img, idx) => (
-          <SwiperSlide key={idx} className="">
-            <Image src={img} className="block mx-auto" alt={room.room_name} width={740} height={280} />
+          <SwiperSlide key={idx} className=''>
+            <Image
+              src={img}
+              className='block mx-auto'
+              alt={room.room_name}
+              width={780}
+              height={280}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

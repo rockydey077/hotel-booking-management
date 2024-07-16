@@ -173,13 +173,15 @@ const DetailsPage = ({ params }) => {
         </div>
       </div>
       <dialog id='my_modal_3' className='modal'>
-        <div className='modal-box bg-[#00000022] rounded-none max-w-screen-2xl h-screen p-0'>
-          <form method='dialog'>
-            <button className='btn z-50 bg-color4 btn-sm btn-circle btn-ghost absolute right-2 top-2'>
-              ✕
-            </button>
-          </form>
-          <ImageSlider room={room} />
+        <div className='bg-color3 flex justify-center items-center bg-opacity-50 min-w-full mx-auto h-screen'>
+          <div className='modal-box bg-transparent min-w-full h-screen rounded-none p-0'>
+            <form method='dialog'>
+              <button className='btn z-50 bg-color4 btn-sm btn-circle btn-ghost absolute right-2 top-2'>
+                ✕
+              </button>
+            </form>
+            <ImageSlider room={room} />
+          </div>
         </div>
       </dialog>
       <ToastContainer />
