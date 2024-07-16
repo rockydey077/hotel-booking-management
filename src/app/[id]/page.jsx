@@ -191,12 +191,14 @@ const DetailsPage = ({ params }) => {
             </div>
           </div>
           <p className='mt-5 font-semibold text-color10'>Show More</p>
+          {/* About */}
           <div className='my-5'>
             <h3 className='font-bold text-2xl'>About this BeachBliss</h3>
             <p className='mt-4 text-base text-color6'>
               Affordable hotels at prime location.
             </p>
           </div>
+          {/* Choose your room */}
           <div className='my-5'>
             <h3 className='font-bold text-2xl'>Choose your room</h3>
             <div className='mt-5 shadow'>
@@ -256,6 +258,7 @@ const DetailsPage = ({ params }) => {
               </div>
             </div>
           </div>
+          {/* Ratings */}
           <div>
             <h2 className='text-2xl font-bold mb-5'>Ratings and reviews</h2>
             <div className='shadow rounded border border-color9 flex items-center'>
@@ -328,6 +331,80 @@ const DetailsPage = ({ params }) => {
                 </div>
               </div>
             </div>
+          </div>
+          {/* Reviews */}
+          <div>
+            <div className='py-5 border-b border-color7'>
+              <div>
+                <div className='flex justify-between items-center mb-5'>
+                  <div className='flex items-center gap-3'>
+                    <div className='avatar'>
+                      <div className='w-10 rounded-full'>
+                        <Image
+                          src='https://i.ibb.co/hCsWc0x/teacher2.jpg'
+                          alt=''
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </div>
+                    <p className='font-semibold text-sm'>Somnath Chatterjee</p>
+                    <p className='font-bold'>·</p>
+                    <p className='text-xs'>21 Jun 2024</p>
+                  </div>
+                  <div>
+                    <p className='flex items-center gap-1 text-color4 text-sm bg-[#346000] w-fit px-2 py-1'>
+                      5 <FaStar className='text-xs' />
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <Image
+                    className='rounded'
+                    src={room?.categories?.room[1]}
+                    alt=''
+                    width={150}
+                    height={100}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='py-5'>
+              <div>
+                <div className='flex justify-between items-center mb-5'>
+                  <div className='flex items-center gap-3'>
+                    <div className='avatar'>
+                      <div className='w-10 rounded-full'>
+                        <Image
+                          src='https://i.ibb.co/P9fq2dg/alex-suprun-ZHv-M3-XIOHo-E-unsplash.jpg'
+                          alt=''
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </div>
+                    <p className='font-semibold text-sm'>Sagar Sinha</p>
+                    <p className='font-bold'>·</p>
+                    <p className='text-xs'>11 Jul 2024</p>
+                  </div>
+                  <div>
+                    <p className='flex items-center gap-1 text-color4 text-sm bg-[#346000] w-fit px-2 py-1'>
+                      5 <FaStar className='text-xs' />
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <Image
+                    className='rounded'
+                    src={room?.categories?.washroom[0]}
+                    alt=''
+                    width={150}
+                    height={100}
+                  />
+                </div>
+              </div>
+            </div>
+            <p className='font-semibold text-color10 cursor-pointer'>See all reviews</p>
           </div>
         </div>
         {/* Booking Section */}
