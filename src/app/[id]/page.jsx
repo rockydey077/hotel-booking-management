@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import { Keyboard, Scrollbar, Navigation } from "swiper/modules";
 import { TbAirConditioning } from "react-icons/tb";
 import { PiTelevisionSimpleFill } from "react-icons/pi";
-import { FaFacebook, FaWhatsapp, FaWifi } from "react-icons/fa";
+import { FaFacebook, FaPercentage, FaWhatsapp, FaWifi } from "react-icons/fa";
 import { FaKitchenSet } from "react-icons/fa6";
 import { MdEmail, MdOutlineElevator } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
@@ -22,6 +22,7 @@ import ImageSlider from "@/utilities/ImageSlider";
 import { TiTick } from "react-icons/ti";
 import { MdOutlineStar } from "react-icons/md";
 import { AiFillThunderbolt } from "react-icons/ai";
+import style from "./styles.module.css";
 
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
@@ -119,17 +120,19 @@ const DetailsPage = ({ params }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className='absolute right-5 bg-color4 bottom-5 z-10'>
+        <div className='absolute right-5  bottom-5 z-10'>
           <button
             onClick={() => document.getElementById("my_modal_3").showModal()}
-            className='flex p-3 border-2 border-color3 rounded items-center gap-2 font-medium text-lg'>
-            <GrGallery className='text-xl' /> View all photos
+            className='flex p-1 border-2 bg-color4 border-color3 rounded items-center gap-2 font-medium text-base'>
+            <GrGallery className='text-2xl' /> View all photos
           </button>
         </div>
         <div>
-          <details className='dropdown dropdown-bottom dropdown-end bg-color4 absolute right-5 top-5 z-10'>
-            <summary className='flex p-3 border-2 border-color3 rounded items-center gap-2 font-medium text-lg cursor-pointer'>
-              <FaRegShareSquare />
+          <details className='dropdown dropdown-bottom dropdown-end  absolute right-5 top-5 z-10'>
+            <summary className='flex p-1 border-2 border-color3 bg-color4 rounded items-center gap-2 font-medium text-base cursor-pointer'>
+              <span className='text-2xl'>
+                <FaRegShareSquare />
+              </span>
               Share
             </summary>
             <ul className='flex flex-wrap gap-5 mt-2 dropdown-content bg-base-100 rounded-box z-[1] w-72 p-5 shadow'>
@@ -149,16 +152,18 @@ const DetailsPage = ({ params }) => {
       <div className='max-w-screen-xl flex gap-20 mx-auto mt-8 mb-16'>
         {/* Room Details */}
         <div className='lg:w-3/5'>
-          <div className='flex items-center gap-10 justify-between'>
+          <div className='flex items-center justify-between'>
             <h1 className='text-3xl font-bold'>{room.room_name}</h1>
             <div className=''>
-              <div className='flex items-center bg-color1 w-fit gap-1 font-semibold text-color9 p-3 text-xl'>
-                <span className='text-2xl'>4.4</span> <FaStar />
+              <div className='flex items-center bg-[#58AC00] w-fit gap-1 font-semibold text-color9 rounded-t p-2 text-xl'>
+                <span className='text-xl'>4.4</span> <FaStar />
               </div>
-              <p className='bg-color9 w-fit text-sm p-[3px]'>455 Ratings</p>
+              <p className='bg-color9 rounded-b w-fit text-xs p-[2px]'>
+                455 Ratings
+              </p>
             </div>
           </div>
-          <p className='text-color8 lg:w-3/4 text-base font-medium mt-4'>
+          <p className='text-color8 lg:w-[85%] text-base font-medium mt-4'>
             {room.description}
           </p>
           {/* Amenities */}
@@ -195,7 +200,7 @@ const DetailsPage = ({ params }) => {
           <div className='my-5'>
             <h3 className='font-bold text-2xl'>Choose your room</h3>
             <div className='mt-5 shadow'>
-              <p className='bg-gradient-to-r text-color4 text-base px-5 py-1 rounded-t from-color6 to-color8 flex items-center gap-1'>
+              <p className='bg-gradient-to-r text-color4 text-sm px-5 py-1 rounded-t from-color6 font-semibold to-color8 flex items-center gap-1'>
                 <span className='text-color2'>
                   <MdOutlineStar />
                 </span>
@@ -207,7 +212,7 @@ const DetailsPage = ({ params }) => {
                     <div>
                       <h3 className='text-2xl font-medium flex items-center gap-2'>
                         Classic
-                        <span className='p-1 text-color4 text-lg bg-color1 rounded-full'>
+                        <span className='p-1 text-color4 font-light text-xs bg-color1 rounded-full'>
                           <TiTick />
                         </span>
                       </h3>
@@ -242,7 +247,7 @@ const DetailsPage = ({ params }) => {
                 </div>
                 <div>
                   <button className='px-8 flex items-center gap-1 text-sm font-semibold py-3 border border-color8 rounded'>
-                    <span className='p-[2px] text-color4 text-base bg-color1 rounded-full'>
+                    <span className='p-[2px] text-color4 text-xs bg-color1 rounded-full'>
                       <TiTick />
                     </span>
                     SELECTED
@@ -256,10 +261,10 @@ const DetailsPage = ({ params }) => {
             <div className='shadow rounded border border-color9 flex items-center'>
               <div className='flex justify-center lg:w-2/5 items-center'>
                 <div className='text-center'>
-                  <div className='flex items-center bg-color1 w-fit gap-1 font-semibold text-color9 p-2 rounded text-xl'>
-                    <span className='text-2xl'>4.4</span> <FaStar />
+                  <div className='flex items-center bg-[#58AC00] w-fit gap-1 font-semibold text-color9 p-2 rounded text-xl'>
+                    <span className='text-xl'>4.4</span> <FaStar />
                   </div>
-                  <p className='font-semibold text-sm'>VERY GOOD</p>
+                  <p className='font-semibold text-xs mt-2 mb-1'>VERY GOOD</p>
                   <p className='text-xs'>455 ratings</p>
                 </div>
               </div>
@@ -271,7 +276,7 @@ const DetailsPage = ({ params }) => {
                       <FaStar />
                     </span>
                     <progress
-                      className='progress progress-success w-56'
+                      className='progress progress-warning w-80'
                       value={58}
                       max='100'></progress>
                     <span className='text-color8'>58%</span>
@@ -282,7 +287,7 @@ const DetailsPage = ({ params }) => {
                       <FaStar />
                     </span>
                     <progress
-                      className='progress progress-success w-56'
+                      className='progress progress-warning w-80'
                       value={15}
                       max='100'></progress>
                     <span className='text-color8'>15%</span>
@@ -293,7 +298,7 @@ const DetailsPage = ({ params }) => {
                       <FaStar />
                     </span>
                     <progress
-                      className='progress progress-success w-56'
+                      className='progress progress-warning w-80'
                       value={11}
                       max='100'></progress>
                     <span className='text-color8'>11%</span>
@@ -304,7 +309,7 @@ const DetailsPage = ({ params }) => {
                       <FaStar />
                     </span>
                     <progress
-                      className='progress progress-success w-56'
+                      className='progress progress-warning w-80'
                       value={2}
                       max='100'></progress>
                     <span className='text-color8'>2%</span>
@@ -315,7 +320,7 @@ const DetailsPage = ({ params }) => {
                       <FaStar />
                     </span>
                     <progress
-                      className='progress progress-success w-56'
+                      className='progress progress-warning w-80'
                       value={11}
                       max='100'></progress>
                     <span className='text-color8'>11%</span>
@@ -331,11 +336,14 @@ const DetailsPage = ({ params }) => {
             className={`${
               isFixed &&
               scrollDirection === "down" &&
-              "fixed top-0 z-40 w-[31%]"
+              "fixed top-0 z-40 w-[32%]"
             } border rounded border-color8`}
             ref={sectionRef}>
-            <div className='bg-gradient-to-r rounded-t from-[#D72E5E] to-[#F15439] flex items-center justify-between px-3 py-2'>
-              <p className='text-sm font-medium text-color4'>
+            <div className='bg-gradient-to-r rounded-t from-[#D72E5E] to-[#F15439] flex items-center justify-between px-5 py-2'>
+              <p className='text-sm font-medium flex items-center gap-1 text-color4'>
+                <span className='p-1 text-[10px] bg-color4 text-[#D72E5E] rounded-full'>
+                  <FaPercentage />
+                </span>
                 LOGIN NOW TO GET UPTO 15% LOWER PRICES
               </p>
               <button className='px-2 py-1 text-sm text-color4 bg-[#F58774]'>
@@ -357,12 +365,35 @@ const DetailsPage = ({ params }) => {
                   <FaPencilAlt className='text-color2' />
                 </p>
               </div>
-              <div className='mt-3 flex justify-between'>
+              <div className='py-5 flex justify-between items-start border-b border-dashed border-color8'>
+                <div>
+                  <p className='flex text-sm gap-3 items-center'>
+                    <span className='p-1 text-[10px] bg-color2 text-color4 rounded-full'>
+                      <FaPercentage />
+                    </span>
+                    WELCOME75 coupon applied
+                  </p>
+                  <button className='bg-[#EFFCF5] font-semibold text-color6 rounded-sm p-1 mt-2 ml-8 text-xs border border-[#97E1BB]'>
+                    MORE OFFERS
+                  </button>
+                </div>
+                <div className='flex items-center gap-3'>
+                  <p className='font-semibold'>-$10</p>
+                  <span className=' text-color4 font-light text-base bg-color1'>
+                    <TiTick />
+                  </span>
+                </div>
+              </div>
+              <div className='pt-5 flex justify-between'>
+                <p>Your savings</p>
+                <p className='font-semibold'>$10</p>
+              </div>
+              <div className='pt-5 flex justify-between'>
                 <p>Total Price:</p>
-                <p className='font-semibold'>${room.price + 10}</p>
+                <p className='font-semibold'>${room.price}</p>
               </div>
               <p className='text-color8 text-xs'>Includes taxes & fees</p>
-              <button className='mt-3 px-5 py-3 w-full font-medium bg-color1 rounded text-color4'>
+              <button className='mt-5 px-5 py-3 w-full font-medium bg-color1 rounded text-color4'>
                 Continue to Book
               </button>
               <p className='flex items-center gap-1 my-5 text-color10 font-medium'>
@@ -385,10 +416,10 @@ const DetailsPage = ({ params }) => {
       </div>
       {/* Modal */}
       <dialog id='my_modal_3' className='modal'>
-        <div className='bg-color3 flex justify-center items-center bg-opacity-50 min-w-full mx-auto h-screen'>
+        <div className='bg-[#000000e6] flex justify-center items-center bg-opacity-50 min-w-full mx-auto h-screen'>
           <div className='modal-box bg-transparent min-w-full h-screen rounded-none p-0'>
             <form method='dialog'>
-              <button className='btn z-50 bg-color4 btn-sm btn-circle btn-ghost absolute right-2 top-2'>
+              <button className='btn z-50 text-color4 text-2xl font-bold btn-sm btn-circle btn-ghost absolute right-16 top-2'>
                 ✕
               </button>
             </form>
