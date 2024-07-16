@@ -3,9 +3,25 @@
     "id": 1,
     "room_name": "Super OYO Prafula Devi Near Rajarhat Chowmatha",
     "price": 50,
+    "categories": {
+      "room": [
+        "https://i.ibb.co/nDqrm3g/room1img1.jpg",
+        "https://i.ibb.co/Vpdvtcn/room1img2.jpg",
+        "https://i.ibb.co/gMPpGnB/room1img4.jpg",
+        "https://i.ibb.co/d6p46Lx/room1img5.jpg",
+        "https://i.ibb.co/LQV6DcF/room1img6.jpg"
+      ],
+      "washroom": [
+        "https://i.ibb.co/cCfX4D8/room1img3.jpg",
+        "https://i.ibb.co/cCfX4D8/room1img3.jpg",
+        "https://i.ibb.co/cCfX4D8/room1img3.jpg"
+      ]
+    },
     "image": [
       "https://i.ibb.co/nDqrm3g/room1img1.jpg",
       "https://i.ibb.co/Vpdvtcn/room1img2.jpg",
+      "https://i.ibb.co/cCfX4D8/room1img3.jpg",
+      "https://i.ibb.co/cCfX4D8/room1img3.jpg",
       "https://i.ibb.co/cCfX4D8/room1img3.jpg",
       "https://i.ibb.co/gMPpGnB/room1img4.jpg",
       "https://i.ibb.co/d6p46Lx/room1img5.jpg",
@@ -22,12 +38,28 @@
     "id": 2,
     "room_name": "Super Collection Ruby Park Near Acropolis Mall",
     "price": 40,
+    "categories": {
+      "room": [
+        "https://i.ibb.co/H2W1pc6/room2img1.jpg",
+        "https://i.ibb.co/7gmJ3Rx/room2img2.jpg",
+        "https://i.ibb.co/FhnqnmJ/room2img3.jpg",
+        "https://i.ibb.co/Xx1Hj2D/room2img4.jpg",
+        "https://i.ibb.co/PWXQc3T/room2img5.jpg"
+      ],
+      "washroom": [
+        "https://i.ibb.co/gDH44Z0/room2img6.jpg",
+        "https://i.ibb.co/gDH44Z0/room2img6.jpg",
+        "https://i.ibb.co/gDH44Z0/room2img6.jpg"
+      ]
+    },
     "image": [
       "https://i.ibb.co/H2W1pc6/room2img1.jpg",
       "https://i.ibb.co/7gmJ3Rx/room2img2.jpg",
       "https://i.ibb.co/FhnqnmJ/room2img3.jpg",
       "https://i.ibb.co/Xx1Hj2D/room2img4.jpg",
       "https://i.ibb.co/PWXQc3T/room2img5.jpg",
+      "https://i.ibb.co/gDH44Z0/room2img6.jpg",
+      "https://i.ibb.co/gDH44Z0/room2img6.jpg",
       "https://i.ibb.co/gDH44Z0/room2img6.jpg"
     ],
     "room_type": "AC",
@@ -41,6 +73,16 @@
     "id": 3,
     "room_name": "Super Collection O Seven Near New Town School",
     "price": 70,
+    "categories": {
+      "room": [
+        "https://i.ibb.co/ftM4vvm/room3img1.jpg",
+        "https://i.ibb.co/6yPn0RD/room3img2.jpg",
+        "https://i.ibb.co/t39qB8B/room3img3.jpg",
+        "https://i.ibb.co/9bPM2TS/room3img4.jpg",
+        "https://i.ibb.co/LYsGDRr/room3img5.jpg"
+      ],
+      "washroom": ["https://i.ibb.co/XYMgrBg/room3img6.jpg"]
+    },
     "image": [
       "https://i.ibb.co/ftM4vvm/room3img1.jpg",
       "https://i.ibb.co/6yPn0RD/room3img2.jpg",
@@ -60,6 +102,16 @@
     "id": 4,
     "room_name": "Super Collection O Heritage VIP Road",
     "price": 60,
+    "categories": {
+      "room": [
+        "https://i.ibb.co/r5YRJvc/room4img1.jpg",
+        "https://i.ibb.co/QXZ7nsX/room4img2.jpg",
+        "https://i.ibb.co/k8ZXngp/room4img3.jpg",
+        "https://i.ibb.co/vzkz2Kf/room4img4.jpg",
+        "https://i.ibb.co/82Kxh8n/room4img5.jpg"
+      ],
+      "washroom": ["https://i.ibb.co/B6P9YDP/room4img6.jpg"]
+    },
     "image": [
       "https://i.ibb.co/r5YRJvc/room4img1.jpg",
       "https://i.ibb.co/QXZ7nsX/room4img2.jpg",
@@ -79,6 +131,16 @@
     "id": 5,
     "room_name": "OYO Deb's Guest house",
     "price": 100,
+    "categories": {
+      "room": [
+        "https://i.ibb.co/hx6dnbj/room5img1.jpg",
+        "https://i.ibb.co/g711sW0/room5img2.jpg",
+        "https://i.ibb.co/V2JYMy5/room5img3.jpg",
+        "https://i.ibb.co/LrTzxr3/room5img4.jpg",
+        "https://i.ibb.co/NjK8WWx/room5img5.jpg"
+      ],
+      "washroom": ["https://i.ibb.co/GsR4L6H/room5img6.jpg"]
+    },
     "image": [
       "https://i.ibb.co/hx6dnbj/room5img1.jpg",
       "https://i.ibb.co/g711sW0/room5img2.jpg",
@@ -98,12 +160,28 @@
     "id": 6,
     "room_name": "Super Collection O Hotel Hiland International",
     "price": 90,
+    "categories": {
+      "room": [
+        "https://i.ibb.co/JtkCh5d/room6img1.jpg",
+        "https://i.ibb.co/Hqgchm1/room6img2.jpg",
+        "https://i.ibb.co/pXDjjFH/room6img3.jpg",
+        "https://i.ibb.co/ChgxMdM/room6img4.jpg",
+        "https://i.ibb.co/wyxcL3x/room6img5.jpg"
+      ],
+      "washroom": [
+        "https://i.ibb.co/GWpCmt6/room6img6.jpg",
+        "https://i.ibb.co/GWpCmt6/room6img6.jpg",
+        "https://i.ibb.co/GWpCmt6/room6img6.jpg"
+      ]
+    },
     "image": [
       "https://i.ibb.co/JtkCh5d/room6img1.jpg",
       "https://i.ibb.co/Hqgchm1/room6img2.jpg",
       "https://i.ibb.co/pXDjjFH/room6img3.jpg",
       "https://i.ibb.co/ChgxMdM/room6img4.jpg",
       "https://i.ibb.co/wyxcL3x/room6img5.jpg",
+      "https://i.ibb.co/GWpCmt6/room6img6.jpg",
+      "https://i.ibb.co/GWpCmt6/room6img6.jpg",
       "https://i.ibb.co/GWpCmt6/room6img6.jpg"
     ],
     "room_type": "AC",
