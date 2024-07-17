@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div>
+    <div className='max-w-screen-xl mx-auto'>
       <div className='carousel w-full'>
         {banners.map((banner) => (
           <div

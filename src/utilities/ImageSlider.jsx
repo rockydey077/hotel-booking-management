@@ -23,24 +23,22 @@ const ImageSlider = ({ room }) => {
 
   return (
     <div>
-      <div className='mb-10'>
-        <div
-          role='tablist'
-          className='tabs tabs-bordered text-color4 text-center text-lg'>
+      <div className='mb-10 max-w-screen-xl mx-auto '>
+        <div role='tablist' className='font-semibold'>
           <a
             onClick={handleRoom}
             role='tab'
             className={`${
-              activeCategory === "room" && "text-color1"
-            } tab cursor-pointer`}>
+              activeCategory === "room" && "border-b-2 border-color4"
+            } tab cursor-pointer text-color4 text-lg `}>
             Room ({room?.categories?.room.length})
           </a>
           <a
             onClick={handleWashroom}
             role='tab'
             className={`${
-              activeCategory === "washroom" && "text-color1"
-            } tab inline-block ml-5 cursor-pointer`}>
+              activeCategory === "washroom" && "border-b-2 border-color4"
+            } tab inline-block ml-5 cursor-pointer text-color4 text-lg`}>
             Washroom ({room?.categories?.washroom.length})
           </a>
         </div>

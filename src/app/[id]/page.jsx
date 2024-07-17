@@ -22,13 +22,17 @@ import ImageSlider from "@/utilities/ImageSlider";
 import { TiTick } from "react-icons/ti";
 import { MdOutlineStar } from "react-icons/md";
 import { AiFillThunderbolt } from "react-icons/ai";
-import style from "./styles.module.css";
+import styles from "./styles.module.css";
+import { CiLocationOn, CiSearch } from "react-icons/ci";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
-  const [isFixed, setIsFixed] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState(null);
-  const sectionRef = useRef(null);
+  // const [isFixed, setIsFixed] = useState(false);
+  // const [scrollDirection, setScrollDirection] = useState(null);
+  // const sectionRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("tab1");
 
   useEffect(() => {
     fetch("rooms.json")
@@ -65,31 +69,31 @@ const DetailsPage = ({ params }) => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    let lastScrollTop =
-      window.pageYOffset || document.documentElement.scrollTop;
+  // useEffect(() => {
+  //   let lastScrollTop =
+  //     window.pageYOffset || document.documentElement.scrollTop;
 
-    const handleScroll = () => {
-      const currentScrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const offsetTop = sectionRef.current.offsetTop;
+  //   const handleScroll = () => {
+  //     const currentScrollTop =
+  //       window.pageYOffset || document.documentElement.scrollTop;
+  //     const offsetTop = sectionRef.current.offsetTop;
 
-      if (currentScrollTop > offsetTop && currentScrollTop > lastScrollTop) {
-        setIsFixed(true);
-        setScrollDirection("down");
-      } else if (currentScrollTop < lastScrollTop) {
-        setIsFixed(false);
-        setScrollDirection("up");
-      }
+  //     if (currentScrollTop > offsetTop && currentScrollTop > lastScrollTop) {
+  //       setIsFixed(true);
+  //       setScrollDirection("down");
+  //     } else if (currentScrollTop < lastScrollTop) {
+  //       setIsFixed(false);
+  //       setScrollDirection("up");
+  //     }
 
-      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
-    };
+  //     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div className=''>
@@ -404,18 +408,248 @@ const DetailsPage = ({ params }) => {
                 </div>
               </div>
             </div>
-            <p className='font-semibold text-color10 cursor-pointer'>See all reviews</p>
+            <p className='font-semibold text-color10 cursor-pointer'>
+              See all reviews
+            </p>
+          </div>
+          {/* Hotel Policies */}
+          <div className='my-5 border-b border-color7'>
+            <div className=''>
+              <h1 className='text-2xl font-bold'>Hotel policies</h1>
+              <div className='py-4 flex items-center '>
+                <div className='space-y-3 lg:px-5 border-r border-color7'>
+                  <p className=''>Check-in</p>
+                  <button className='font-semibold px-4 py-1 border border-color7'>
+                    12.00PM
+                  </button>
+                </div>
+                <div className='space-y-3 lg:pl-5'>
+                  <p className=''>Check-out</p>
+                  <button className='font-semibold border px-4 py-1 border-color7'>
+                    11.00AM
+                  </button>
+                </div>
+              </div>
+              <div className='py-5'>
+                <ul className='text-sm space-y-3'>
+                  <li>Couples are welcome</li>
+                  <li>
+                    Guests can check in using any local or outstation ID proof
+                    (PAN card not accepted).
+                  </li>
+                  <li>Only Indian Nationals allowed</li>
+                  <li className='text-'>
+                    This hotel is serviced under the trade name of Prafulla Devi
+                    Guest House Rajarhat Chomatta as per quality standards of
+                    OYO
+                  </li>
+                </ul>
+                <div className='flex justify-between items-center mt-5'>
+                  <p className='font-semibold text-color10'>
+                    View Guest Policy
+                  </p>
+                  <p className='font-semibold text-color10 flex items-center gap-2'>
+                    <CiSearch />
+                    Find OYOs without these rules
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* What's nearby */}
+          <div className='my-5'>
+            <h2 className='text-2xl font-bold'>What's nearby?</h2>
+            <div className='mt-5 border border-color8 pt-5 pl-5 rounded'>
+              <div className='flex items-center gap-6 font-semibold'>
+                <div
+                  className={`w-6 h-6 rounded-full border-2 ${styles.nearby_shadow}`}></div>
+                <h3>Super OYO Prafula Devi Near Rajarhat Chowmatha</h3>
+              </div>
+              <div className='mt-3 flex gap-7 items-center mb-6'>
+                <CiLocationOn className='text-2xl' />
+                <input
+                  className='border border-color7 pl-4 pr-36  rounded py-2'
+                  type='text'
+                  placeholder='Find distance from a place'
+                />
+              </div>
+              <div className=''>
+                <div className=''>
+                  <Tabs>
+                    <TabList className='flex gap-6 border-b border-color8'>
+                      <Tab
+                        className={`font-semibold cursor-pointer ${
+                          activeTab === "tab1" &&
+                          "!text-color10 !border-b-2 pb-1 !border-color10"
+                        }`}
+                        onClick={() => setActiveTab("tab1")}>
+                        Places to visit
+                      </Tab>
+                      <Tab
+                        className={`font-semibold cursor-pointer ${
+                          activeTab === "tab2" &&
+                          "!text-color10 !border-b-2 pb-1 !border-color10"
+                        }`}
+                        onClick={() => setActiveTab("tab2")}>
+                        Restaurants
+                      </Tab>
+                      <Tab
+                        className={`font-semibold cursor-pointer ${
+                          activeTab === "tab3" &&
+                          "!text-color10 !border-b-2 pb-1 !border-color10"
+                        }`}
+                        onClick={() => setActiveTab("tab3")}>
+                        Transportation
+                      </Tab>
+                    </TabList>
+
+                    <div className='flex gap-5'>
+                      <div className='lg:w-[45%]'>
+                        <TabPanel className='mt-3'>
+                          <ul className='space-y-2'>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                The Majestic Suites
+                              </p>
+                              <p className='text-sm text-color6'>2.0kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                The Orient City Center 2 Chinar Park NewTown
+                              </p>
+                              <p className='text-sm text-color6'>3.9kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Golden Heaven Hotel & Restaurant
+                              </p>
+                              <p className='text-sm text-color6'>5.8kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Netaji Subhash Chandra Bose International
+                                Airport
+                              </p>
+                              <p className='text-sm text-color6'>5.0kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>Teghoria</p>
+                              <p className='text-sm text-color6'>5.7kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Tata Medical Centre
+                              </p>
+                              <p className='text-sm text-color6'>5.8kms</p>
+                            </li>
+                          </ul>
+                        </TabPanel>
+                        <TabPanel className='mt-3'>
+                          <ul className='space-y-2'>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                The Majestic Suites
+                              </p>
+                              <p className='text-sm text-color6'>2.0kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                The Orient City Center 2 Chinar Park NewTown
+                              </p>
+                              <p className='text-sm text-color6'>3.9kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Golden Heaven Hotel & Restaurant
+                              </p>
+                              <p className='text-sm text-color6'>5.8kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                California Restaurent Cum Bar
+                              </p>
+                              <p className='text-sm text-color6'>6.6kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Sher E Punjab
+                              </p>
+                              <p className='text-sm text-color6'>6.9kms</p>
+                            </li>
+                          </ul>
+                        </TabPanel>
+                        <TabPanel className='mt-3'>
+                          <ul className='space-y-2'>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Netaji Subhash Chandra Bose International
+                                Airport
+                              </p>
+                              <p className='text-sm text-color6'>5.0kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>Teghoria</p>
+                              <p className='text-sm text-color6'>5.7kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Tata Medical Centre
+                              </p>
+                              <p className='text-sm text-color6'>5.8kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Netaji Subhash Chandra Bose International
+                                Airport
+                              </p>
+                              <p className='text-sm text-color6'>5.0kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Dum Dum Airport 1 No. Gate
+                              </p>
+                              <p className='text-sm text-color6'>6.0kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Shree Balaji Computers
+                              </p>
+                              <p className='text-sm text-color6'>5.9kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Madhyamgram Chowrasta
+                              </p>
+                              <p className='text-sm text-color6'>7.4kms</p>
+                            </li>
+                            <li className='flex gap-5 justify-between items-center'>
+                              <p className='font-semibold text-sm'>
+                                Durganagar
+                              </p>
+                              <p className='text-sm text-color6'>7.4kms</p>
+                            </li>
+                          </ul>
+                        </TabPanel>
+                      </div>
+                      <div className='lg:w-[55%]'>
+                        <iframe
+                          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.516092394622!2d90.3627763!3d23.8066807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c709b35123df%3A0x6b77ed6f8ff908b5!2sSuper%20OYO%20Prafula%20Devi%20Near%20Rajarhat%20Chowmatha!5e0!3m2!1sen!2sbd!4v1659270734142!5m2!1sen!2sbd'
+                          width='100%'
+                          height={300}
+                          allowFullScreen=''
+                          loading='lazy'
+                          className='border-0'></iframe>
+                      </div>
+                    </div>
+                  </Tabs>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         {/* Booking Section */}
-        <div className='lg:w-2/5 shadow rounded h-fit'>
-          <div
-            className={`${
-              isFixed &&
-              scrollDirection === "down" &&
-              "fixed top-0 z-40 w-[32%]"
-            } border rounded border-color8`}
-            ref={sectionRef}>
+        <div className='lg:w-2/5 shadow rounded h-fit sticky right-[5%] top-8 z-40 bg-color4'>
+          <div>
             <div className='bg-gradient-to-r rounded-t from-[#D72E5E] to-[#F15439] flex items-center justify-between px-5 py-2'>
               <p className='text-sm font-medium flex items-center gap-1 text-color4'>
                 <span className='p-1 text-[10px] bg-color4 text-[#D72E5E] rounded-full'>
