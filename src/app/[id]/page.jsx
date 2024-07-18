@@ -26,6 +26,8 @@ import styles from "./styles.module.css";
 import { CiLocationOn, CiSearch } from "react-icons/ci";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import "./style.css";
+import { ImCross } from "react-icons/im";
 
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
@@ -431,14 +433,14 @@ const DetailsPage = ({ params }) => {
                 </div>
               </div>
               <div className='py-5'>
-                <ul className='text-sm space-y-3'>
+                <ul className='text-sm space-y-3 list-disc list-inside'>
                   <li>Couples are welcome</li>
                   <li>
                     Guests can check in using any local or outstation ID proof
                     (PAN card not accepted).
                   </li>
                   <li>Only Indian Nationals allowed</li>
-                  <li className='text-'>
+                  <li className=''>
                     This hotel is serviced under the trade name of Prafulla Devi
                     Guest House Rajarhat Chomatta as per quality standards of
                     OYO
@@ -684,9 +686,37 @@ const DetailsPage = ({ params }) => {
                     </span>
                     WELCOME75 coupon applied
                   </p>
-                  <button className='bg-[#EFFCF5] font-semibold text-color6 rounded-sm p-1 mt-2 ml-8 text-xs border border-[#97E1BB]'>
-                    MORE OFFERS
-                  </button>
+                  <div>
+                    <div className='drawer drawer-end'>
+                      <input
+                        id='my-drawer-4'
+                        type='checkbox'
+                        className='drawer-toggle'
+                      />
+                      <div className='drawer-content'>
+                        {/* Page content here */}
+                        <label
+                          htmlFor='my-drawer-4'
+                          className='bg-[#EFFCF5] font-semibold text-color6 rounded-sm cursor-pointer p-1 inline-block mt-2 ml-8 text-xs border border-[#97E1BB]'>
+                          MORE OFFERS
+                        </label>
+                      </div>
+                      <div className='drawer-side'>
+                        <label
+                          htmlFor='my-drawer-4'
+                          aria-label='close sidebar'
+                          className='drawer-overlay text-transparent text-xl pt-5 pl-[880px]'>
+                          <ImCross />
+                        </label>
+                        <ul className='menu bg-color4 text-base-content min-h-full w-[40%] p-10'>
+                          {/* Sidebar content here */}
+                          <h2 className='font-bold text-2xl'>More Offers</h2>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <button >
+                  </button> */}
                 </div>
                 <div className='flex items-center gap-3'>
                   <p className='font-semibold'>-$10</p>
