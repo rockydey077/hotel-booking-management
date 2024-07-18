@@ -28,12 +28,11 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./style.css";
 import { ImCross } from "react-icons/im";
+import Nearby from "@/components/Nearby/Nearby";
+import RoomDetails from "@/components/RoomDetails/RoomDetails";
 
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
-  // const [isFixed, setIsFixed] = useState(false);
-  // const [scrollDirection, setScrollDirection] = useState(null);
-  // const sectionRef = useRef(null);
   const [activeTab, setActiveTab] = useState("tab1");
 
   useEffect(() => {
@@ -55,47 +54,6 @@ const DetailsPage = ({ params }) => {
     localStorage.setItem(JSON.stringify(id), JSON.stringify(booking));
     toast.success("Room booked successfully!");
   };
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const offset = window.scrollY;
-  //     if (offset > 0) {
-  //       setIsSticky(true);
-  //     } else {
-  //       setIsSticky(false);
-  //     }
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   let lastScrollTop =
-  //     window.pageYOffset || document.documentElement.scrollTop;
-
-  //   const handleScroll = () => {
-  //     const currentScrollTop =
-  //       window.pageYOffset || document.documentElement.scrollTop;
-  //     const offsetTop = sectionRef.current.offsetTop;
-
-  //     if (currentScrollTop > offsetTop && currentScrollTop > lastScrollTop) {
-  //       setIsFixed(true);
-  //       setScrollDirection("down");
-  //     } else if (currentScrollTop < lastScrollTop) {
-  //       setIsFixed(false);
-  //       setScrollDirection("up");
-  //     }
-
-  //     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   return (
     <div className=''>
@@ -158,308 +116,9 @@ const DetailsPage = ({ params }) => {
       <div className='max-w-screen-xl flex gap-20 mx-auto mt-8 mb-16'>
         {/* Room Details */}
         <div className='lg:w-3/5'>
-          <div className='flex items-center justify-between'>
-            <h1 className='text-3xl font-bold'>{room.room_name}</h1>
-            <div className=''>
-              <div className='flex items-center bg-[#58AC00] w-fit gap-1 font-semibold text-color9 rounded-t p-2 text-xl'>
-                <span className='text-xl'>4.4</span> <FaStar />
-              </div>
-              <p className='bg-color9 rounded-b w-fit text-xs p-[2px]'>
-                455 Ratings
-              </p>
-            </div>
-          </div>
-          <p className='text-color8 lg:w-[85%] text-base font-medium mt-4'>
-            {room.description}
-          </p>
-          {/* Amenities */}
-          <h3 className='text-2xl font-bold my-5'>Amenities</h3>
-          <div className='grid grid-cols-3 gap-4 text-xl'>
-            <div className='flex items-center gap-2'>
-              <TbAirConditioning />
-              <span>{room.room_type}</span>
-            </div>
-            <div className='flex items-center gap-2'>
-              <PiTelevisionSimpleFill />
-              <span>{room.tv}</span>
-            </div>
-            <div className='flex items-center gap-2'>
-              <FaWifi />
-              <span>{room.wifi}</span>
-            </div>
-            <div className='flex items-center gap-2'>
-              <FaKitchenSet />
-              <span>{room.kitchen}</span>
-            </div>
-            <div className='flex items-center gap-2'>
-              <MdOutlineElevator />
-              <span>{room.elevator}</span>
-            </div>
-          </div>
-          <p className='mt-5 font-semibold text-color10'>Show More</p>
-          {/* About */}
-          <div className='my-5'>
-            <h3 className='font-bold text-2xl'>About this BeachBliss</h3>
-            <p className='mt-4 text-base text-color6'>
-              Affordable hotels at prime location.
-            </p>
-          </div>
-          {/* Choose your room */}
-          <div className='my-5'>
-            <h3 className='font-bold text-2xl'>Choose your room</h3>
-            <div className='mt-5 shadow'>
-              <p className='bg-gradient-to-r text-color4 text-sm px-5 py-1 rounded-t from-color6 font-semibold to-color8 flex items-center gap-1'>
-                <span className='text-color2'>
-                  <MdOutlineStar />
-                </span>
-                SELECTED CATEGORY
-              </p>
-              <div className='p-5 border-b border-color8'>
-                <div className='flex justify-between'>
-                  <div className='flex flex-col justify-between'>
-                    <div>
-                      <h3 className='text-2xl font-medium flex items-center gap-2'>
-                        Classic
-                        <span className='p-1 text-color4 font-light text-xs bg-color1 rounded-full'>
-                          <TiTick />
-                        </span>
-                      </h3>
-                      <p className='mt-3 text-color6'>Room size: 99 sqft</p>
-                    </div>
-                    <div className='flex items-center gap-6'>
-                      <div className='flex  items-center gap-2'>
-                        <TbAirConditioning />
-                        <span>{room.room_type}</span>
-                      </div>
-                      <div className='flex items-center gap-2'>
-                        <PiTelevisionSimpleFill />
-                        <span>{room.tv}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <Image
-                      className='rounded'
-                      src={room?.categories?.room[0]}
-                      alt={room.name_type}
-                      width={200}
-                      height={200}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='p-5 flex justify-between items-center'>
-                <div>
-                  <h4 className='font-bold text-2xl'>${room.price}</h4>
-                  <p className='text-sm text-color8'>+taxes & fees: $10</p>
-                </div>
-                <div>
-                  <button className='px-8 flex items-center gap-1 text-sm font-semibold py-3 border border-color8 rounded'>
-                    <span className='p-[2px] text-color4 text-xs bg-color1 rounded-full'>
-                      <TiTick />
-                    </span>
-                    SELECTED
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Ratings */}
-          <div>
-            <h2 className='text-2xl font-bold mb-5'>Ratings and reviews</h2>
-            <div className='shadow rounded border border-color9 flex items-center'>
-              <div className='flex justify-center lg:w-2/5 items-center'>
-                <div className='text-center'>
-                  <div className='flex items-center bg-[#58AC00] w-fit gap-1 font-semibold text-color9 p-2 rounded text-xl'>
-                    <span className='text-xl'>4.4</span> <FaStar />
-                  </div>
-                  <p className='font-semibold text-xs mt-2 mb-1'>VERY GOOD</p>
-                  <p className='text-xs'>455 ratings</p>
-                </div>
-              </div>
-              <div className='lg:w-3/5 py-3 border-s border-color8 flex justify-center items-center'>
-                <div className='space-y-2'>
-                  <div className='flex items-center gap-1 text-xs'>
-                    5{" "}
-                    <span className='text-color8'>
-                      <FaStar />
-                    </span>
-                    <progress
-                      className='progress progress-warning w-80'
-                      value={58}
-                      max='100'></progress>
-                    <span className='text-color8'>58%</span>
-                  </div>
-                  <div className='flex items-center gap-1 text-xs'>
-                    4{" "}
-                    <span className='text-color8'>
-                      <FaStar />
-                    </span>
-                    <progress
-                      className='progress progress-warning w-80'
-                      value={15}
-                      max='100'></progress>
-                    <span className='text-color8'>15%</span>
-                  </div>
-                  <div className='flex items-center gap-1 text-xs'>
-                    3{" "}
-                    <span className='text-color8'>
-                      <FaStar />
-                    </span>
-                    <progress
-                      className='progress progress-warning w-80'
-                      value={11}
-                      max='100'></progress>
-                    <span className='text-color8'>11%</span>
-                  </div>
-                  <div className='flex items-center gap-1 text-xs'>
-                    2{" "}
-                    <span className='text-color8'>
-                      <FaStar />
-                    </span>
-                    <progress
-                      className='progress progress-warning w-80'
-                      value={2}
-                      max='100'></progress>
-                    <span className='text-color8'>2%</span>
-                  </div>
-                  <div className='flex items-center gap-1 text-xs'>
-                    1{" "}
-                    <span className='text-color8'>
-                      <FaStar />
-                    </span>
-                    <progress
-                      className='progress progress-warning w-80'
-                      value={11}
-                      max='100'></progress>
-                    <span className='text-color8'>11%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Reviews */}
-          <div>
-            <div className='py-5 border-b border-color7'>
-              <div>
-                <div className='flex justify-between items-center mb-5'>
-                  <div className='flex items-center gap-3'>
-                    <div className='avatar'>
-                      <div className='w-10 rounded-full'>
-                        <Image
-                          src='https://i.ibb.co/hCsWc0x/teacher2.jpg'
-                          alt=''
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                    </div>
-                    <p className='font-semibold text-sm'>Somnath Chatterjee</p>
-                    <p className='font-bold'>·</p>
-                    <p className='text-xs'>21 Jun 2024</p>
-                  </div>
-                  <div>
-                    <p className='flex items-center gap-1 text-color4 text-sm bg-[#346000] w-fit px-2 py-1'>
-                      5 <FaStar className='text-xs' />
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <Image
-                    className='rounded'
-                    src={room?.categories?.room[1]}
-                    alt=''
-                    width={150}
-                    height={100}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className='py-5'>
-              <div>
-                <div className='flex justify-between items-center mb-5'>
-                  <div className='flex items-center gap-3'>
-                    <div className='avatar'>
-                      <div className='w-10 rounded-full'>
-                        <Image
-                          src='https://i.ibb.co/P9fq2dg/alex-suprun-ZHv-M3-XIOHo-E-unsplash.jpg'
-                          alt=''
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                    </div>
-                    <p className='font-semibold text-sm'>Sagar Sinha</p>
-                    <p className='font-bold'>·</p>
-                    <p className='text-xs'>11 Jul 2024</p>
-                  </div>
-                  <div>
-                    <p className='flex items-center gap-1 text-color4 text-sm bg-[#346000] w-fit px-2 py-1'>
-                      5 <FaStar className='text-xs' />
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <Image
-                    className='rounded'
-                    src={room?.categories?.washroom[0]}
-                    alt=''
-                    width={150}
-                    height={100}
-                  />
-                </div>
-              </div>
-            </div>
-            <p className='font-semibold text-color10 cursor-pointer'>
-              See all reviews
-            </p>
-          </div>
-          {/* Hotel Policies */}
-          <div className='my-5 border-b border-color7'>
-            <div className=''>
-              <h1 className='text-2xl font-bold'>Hotel policies</h1>
-              <div className='py-4 flex items-center '>
-                <div className='space-y-3 lg:px-5 border-r border-color7'>
-                  <p className=''>Check-in</p>
-                  <button className='font-semibold px-4 py-1 border border-color7'>
-                    12.00PM
-                  </button>
-                </div>
-                <div className='space-y-3 lg:pl-5'>
-                  <p className=''>Check-out</p>
-                  <button className='font-semibold border px-4 py-1 border-color7'>
-                    11.00AM
-                  </button>
-                </div>
-              </div>
-              <div className='py-5'>
-                <ul className='text-sm space-y-3 list-disc list-inside'>
-                  <li>Couples are welcome</li>
-                  <li>
-                    Guests can check in using any local or outstation ID proof
-                    (PAN card not accepted).
-                  </li>
-                  <li>Only Indian Nationals allowed</li>
-                  <li className=''>
-                    This hotel is serviced under the trade name of Prafulla Devi
-                    Guest House Rajarhat Chomatta as per quality standards of
-                    OYO
-                  </li>
-                </ul>
-                <div className='flex justify-between items-center mt-5'>
-                  <p className='font-semibold text-color10'>
-                    View Guest Policy
-                  </p>
-                  <p className='font-semibold text-color10 flex items-center gap-2'>
-                    <CiSearch />
-                    Find OYOs without these rules
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <RoomDetails room={room} />
           {/* What's nearby */}
-          <div className='my-5'>
+          {/* <div className='my-5'>
             <h2 className='text-2xl font-bold'>What's nearby?</h2>
             <div className='mt-5 border border-color8 pt-5 pl-5 rounded'>
               <div className='flex items-center gap-6 font-semibold'>
@@ -647,13 +306,16 @@ const DetailsPage = ({ params }) => {
                 </div>
               </div>
             </div>
+          </div> */}
+          <div className='mt-5'>
+            <Nearby activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
         </div>
         {/* Booking Section */}
-        <div className='lg:w-2/5 shadow rounded h-fit sticky right-[5%] top-8 z-40 bg-color4'>
+        <div className='lg:w-[384px] shadow rounded h-fit sticky right-[5%] top-8 z-40 bg-color4'>
           <div>
-            <div className='bg-gradient-to-r rounded-t from-[#D72E5E] to-[#F15439] flex items-center justify-between px-5 py-2'>
-              <p className='text-sm font-medium flex items-center gap-1 text-color4'>
+            <div className='bg-gradient-to-r rounded-t from-[#D72E5E] to-[#F15439] flex items-center justify-between gap-6 px-5 py-2'>
+              <p className='text-xs font-medium flex items-center gap-1 text-color4'>
                 <span className='p-1 text-[10px] bg-color4 text-[#D72E5E] rounded-full'>
                   <FaPercentage />
                 </span>
@@ -710,7 +372,232 @@ const DetailsPage = ({ params }) => {
                         </label>
                         <ul className='menu bg-color4 text-base-content min-h-full w-[40%] p-10'>
                           {/* Sidebar content here */}
-                          <h2 className='font-bold text-2xl'>More Offers</h2>
+                          <h2 className='font-bold mb-4 text-2xl'>
+                            More Offers
+                          </h2>
+                          <div className='border rounded-sm flex justify-between border-color7 px-6 py-3 '>
+                            <p className='text-xs'>WELCOME75 coupon applied</p>
+                            <button className='text-color10 font-semibold'>
+                              Remove
+                            </button>
+                          </div>
+                          <div className='py-8'>
+                            <h2 className='text-xl font-bold mb-4'>
+                              Available Coupons
+                            </h2>
+                            <div className='space-y-3'>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded text-xs px-2 py-1 border border-[#97979733] bg-[#cfccdb33]'>
+                                    Applied
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                              <div className='p-5 border rounded-sm border-color7'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='flex gap-2'>
+                                    <h1 className='text-color10 font-black text-2xl'>
+                                      OYO
+                                    </h1>
+                                    <button className='px-2 text-xs font-semibold uppercase py-1 border border-dashed rounded-[1px] bg-[#f5a62333] border-[#F5A623]'>
+                                      WELCOME75
+                                    </button>
+                                  </div>
+                                  <button className='rounded font-semibold text-xs px-3 py-1 border border-[#E6E6F6] text-[#EE2E24] bg-color4'>
+                                    Apply
+                                  </button>
+                                </div>
+                                <p className='my-3 text-sm font-semibold'>
+                                  upto 75% off
+                                </p>
+                                <p className='font-medium text-xs text-[#00000080]'>
+                                  Get upto 75% off using code WELCOME75
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </ul>
                       </div>
                     </div>
