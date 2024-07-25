@@ -1,4 +1,7 @@
 "use client";
+import Categories from "@/utilities/Categories";
+import Collections from "@/utilities/Collections";
+import Facilities from "@/utilities/Facilities";
 import FilterResult from "@/utilities/FilterResult";
 import React, { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
@@ -101,6 +104,45 @@ const FilterSide = () => {
         </div>
       </div>
       <div className='my-6 border-b border-color8'></div>
+      <div className=''>
+        <Collections />
+      </div>
+      <div className='my-6 border-b border-color8'></div>
+      <div className=''>
+        <Categories />
+      </div>
+      <div className='my-6 border-b border-color8'></div>
+      <div>
+        <h3 className='text-sm font-bold text-[#222] mb-4'>
+          Accomodation Type
+        </h3>
+        <div className='space-y-[18px]'>
+          <div className='flex items-center gap-2'>
+            <input className='' type='checkbox' name='' id='' />
+            <p className='text-sm font-normal text-[#222]'>Resort</p>
+          </div>
+          <div className='flex items-center gap-2'>
+            <input className='' type='checkbox' name='' id='' />
+            <p className='text-sm font-normal text-[#222]'>OYO Home</p>
+          </div>
+          <div className='flex items-center gap-2'>
+            <input className='' type='checkbox' name='' id='' />
+            <p className='text-sm font-normal text-[#222]'>Hotel</p>
+          </div>
+        </div>
+      </div>
+      <div className='my-6 border-b border-color8'></div>
+      <div>
+        <Facilities />
+      </div>
+      <div className='my-6 border-b border-color8'></div>
+      <div className='pb-6'>
+        <h3 className='text-sm font-bold text-[#222] mb-4'>Home Facilities</h3>
+        <div className='flex items-center gap-2'>
+          <input type='checkbox' name='' id='' />
+          <p className='text-sm font-normal text-[#222]'>Pay at Hotel</p>
+        </div>
+      </div>
     </div>
   );
 };
