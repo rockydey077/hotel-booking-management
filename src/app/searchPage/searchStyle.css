@@ -1,0 +1,23 @@
+/* ::-webkit-scrollbar {
+  width: 5px;
+  height: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BDBDBD;
+  border-radius: 15px;
+} */
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 100px;
+  width: 334px;
+  height: 93%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #bdbdbd;
+}
+.scroll-box {
+  overflow: auto;
+}

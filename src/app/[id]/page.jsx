@@ -326,15 +326,15 @@ const DetailsPage = ({ params }) => {
               </button>
             </div>
             <div className='p-5'>
-              <p className='font-bold text-3xl'>${room.price}</p>
+              <p className='font-bold text-2xl'>${room.price}</p>
               <p className='text-color8 text-xs'>+taxes & fees: $10</p>
-              <div className='flex justify-between items-center font-medium shadow p-4 mt-3'>
+              <div className='flex justify-between text-sm items-center font-medium shadow p-4 mt-3'>
                 <p>Mon, 15 Jul - Tue, 16 Jul</p>
                 <p>1 Room, 1 Guest</p>
               </div>
               <div className='flex justify-between items-center font-medium shadow p-4 mt-3'>
-                <p className='flex items-center gap-1 font-medium'>
-                  <MdOutlineDoorFront className='text-color8 text-xl' /> Classic
+                <p className='flex items-center gap-1 text-sm font-medium'>
+                  <MdOutlineDoorFront className='text-color8 text-2xl' /> Classic
                 </p>
                 <p>
                   <FaPencilAlt className='text-color2' />
@@ -343,7 +343,7 @@ const DetailsPage = ({ params }) => {
               <div className='py-5 flex justify-between items-start border-b border-dashed border-color8'>
                 <div>
                   <p className='flex text-sm gap-3 items-center'>
-                    <span className='p-1 text-[10px] bg-color2 text-color4 rounded-full'>
+                    <span className='p-1 text-sm bg-color2 text-color4 rounded-full'>
                       <FaPercentage />
                     </span>
                     WELCOME75 coupon applied
@@ -606,17 +606,17 @@ const DetailsPage = ({ params }) => {
                   </button> */}
                 </div>
                 <div className='flex items-center gap-3'>
-                  <p className='font-semibold'>-$10</p>
+                  <p className='font-semibold text-sm'>-$10</p>
                   <span className=' text-color4 font-light text-base bg-color1'>
                     <TiTick />
                   </span>
                 </div>
               </div>
-              <div className='pt-5 flex justify-between'>
+              <div className='pt-5 flex text-sm justify-between'>
                 <p>Your savings</p>
                 <p className='font-semibold'>$10</p>
               </div>
-              <div className='pt-5 flex justify-between'>
+              <div className='pt-5 text-sm flex justify-between'>
                 <p>Total Price:</p>
                 <p className='font-semibold'>${room.price}</p>
               </div>
