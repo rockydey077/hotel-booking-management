@@ -21,3 +21,9 @@
 .scroll-box {
   overflow: auto;
 }
+
+.content {
+  position: relative;
+  width: calc(100% - 434px);
+  left: 434px;
+}
