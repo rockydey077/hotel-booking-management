@@ -49,7 +49,7 @@ const SearchResult = () => {
             <div
               key={result.id}
               className='flex gap-4 py-10 border-b border-color7'>
-              <div className='lg:w-2/5 flex gap-[2px]'>
+              <div className='lg:w-2/5 flex gap-[3px]'>
                 <Swiper
                   navigation={true}
                   modules={[Navigation]}
@@ -60,11 +60,11 @@ const SearchResult = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                <div className='space-y-[3px]'>
+                <div className='space-y-1'>
                   {result?.room.map((img, index) => (
                     <Image
                       src={img}
-                      width={517}
+                      width={563}
                       height={120}
                       alt=''
                       key={index}
