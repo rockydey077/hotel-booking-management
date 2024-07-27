@@ -7,11 +7,11 @@ const SearchPage = () => {
   return (
     <div className='h-screen max-w-screen-xl mx-auto main-body'>
       <nav className='sidebar'>
-        <div className='scroll-box px-6'>
+        <div className='scroll-box pr-6'>
           <FilterSide />
         </div>
       </nav>
-      <div className='content px-6 pt-5'>
+      <div className='content pl-6 pt-5'>
         <SearchResult />
       </div>
     </div>

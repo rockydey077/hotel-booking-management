@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+// import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import { FaAirFreshener, FaStar, FaTv, FaWifi } from "react-icons/fa";
 import { FaElevator, FaKitchenSet } from "react-icons/fa6";
 import { TbAirConditioning } from "react-icons/tb";
 import Link from "next/link";
+import "./searchResultStyle.css";
 
 const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -44,14 +45,14 @@ const SearchResult = () => {
           </div>
         </div>
       </div>
-      <div className='h-[250px]'>
+      <div className=''>
         <div className=''>
           {searchResult.map((result) => (
             <div
               key={result.id}
-              className='flex gap-4 py-10 border-b border-color7'>
-              <div className='w-2/5 flex items-center gap-[3px]'>
-                <Swiper
+              className='flex gap-4 py-10 items-center border-b border-color7'>
+              <div className='w-[43%] flex items-center gap-[3px]'>
+                {/* <Swiper
                   navigation={true}
                   modules={[Navigation]}
                   className='mySwiper w-[84.4%]'>
@@ -66,7 +67,41 @@ const SearchResult = () => {
                       />
                     </SwiperSlide>
                   ))}
-                </Swiper>
+                </Swiper> */}
+                <div className='carousel w-[84.3%]'>
+                  {result?.image.map((img, index) => (
+                    <div
+                      key={index}
+                      id={`result${result.id}slide${index + 1}`}
+                      className='carousel-item relative w-full cursor-pointer slider-container'>
+                      <Image
+                        src={img}
+                        className='w-full'
+                        width={400}
+                        height={200}
+                        alt=''
+                      />
+                      <div className='slider-button '>
+                        <a
+                          href={`#result${result.id}slide${
+                            index + 1 === 1 ? 8 : index + 1 - 1
+                          }
+                          `}
+                          className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
+                          ❮
+                        </a>
+                        <a
+                          href={`#result${result.id}slide${
+                            index + 1 === 8 ? 1 : index + 1 + 1
+                          }
+                          `}
+                          className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
+                          ❯
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
                 <div className='space-y-1 w-[15.6%]'>
                   {result?.room.map((img, index) => (
                     <Image
@@ -80,8 +115,8 @@ const SearchResult = () => {
                   ))}
                 </div>
               </div>
-              <div className='w-3/5 flex flex-col gap-6'>
-                <div className='flex gap-10 items-center'>
+              <div className='w-[57%] flex flex-col gap-6'>
+                <div className='flex gap-6 items-center'>
                   <div className='w-[80%]'>
                     <h3 className='text-xl font-bold text-[#222]'>
                       {result.room_name.slice(0, 35)}
@@ -98,16 +133,16 @@ const SearchResult = () => {
                 </div>
                 <div className='flex-1 space-y-2'>
                   <div className='flex items-center gap-[9px]'>
-                    <p className='flex items-center gap-1 text-xs font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
+                    <p className='flex items-center gap-1 text-xs rounded-sm font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
                       {result.rate} <FaStar />
                     </p>
                     <div className='flex items-center gap-2 text-xs text-[#6d787d] font-normal'>
                       <p>({result.ratings} Ratings)</p>
                       <p className='w-[3px] h-[3px] bg-[#6d787d] border-[#6d787d] border rounded-full'></p>
-                      <p>{result.ratings >= 4 ? "Vary Good" : "Good"}</p>
+                      <p>{result.rate >= 4.0 ? "Vary Good" : "Good"}</p>
                     </div>
                   </div>
-                  <div className='flex items-center gap-3'>
+                  <div className='flex items-center gap-4'>
                     {result.tv && (
                       <p className='flex items-center text-sm text-[#222] gap-1'>
                         <FaTv /> TV
@@ -158,7 +193,7 @@ const SearchResult = () => {
                       className='text-[#222] px-4 py-2 border-2 border-[#222] rounded-[2px]'>
                       View Details
                     </Link>
-                    <button className='bg-[#1ab64f] px-4 py-2 border-none rounded-sm text-color4'>
+                    <button className='bg-[#1ab64f] px-4 py-2 border-none rounded text-color4'>
                       Book Now
                     </button>
                   </div>
