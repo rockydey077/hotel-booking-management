@@ -5,6 +5,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
+import { FaAirFreshener, FaStar, FaTv, FaWifi } from "react-icons/fa";
+import { FaElevator, FaKitchenSet } from "react-icons/fa6";
+import { TbAirConditioning } from "react-icons/tb";
 
 const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -69,9 +72,9 @@ const SearchResult = () => {
                   ))}
                 </div>
               </div>
-              <div className='lg:w-[80%]'>
-                <div className="flex gap-10 items-center">
-                  <div className="lg:w-3/4">
+              <div className='lg:w-3/5 flex flex-col gap-6'>
+                <div className='flex gap-10 items-center'>
+                  <div className='lg:w-[80%]'>
                     <h3 className='text-xl font-bold text-[#222]'>
                       {result.room_name.slice(0, 40)}
                       {result.room_name.length >= 40 && "..."}
@@ -83,6 +86,71 @@ const SearchResult = () => {
                   <div className='lg:w-[20%] text-xs font-semibold text-color10'>
                     {Math.floor(Math.random() * 10) + 1}k+ people booked this
                     OYO in last {Math.floor(Math.random() * 10) + 1} months
+                  </div>
+                </div>
+                <div className='flex-1'>
+                  <div className='flex items-center gap-[9px]'>
+                    <p className='flex items-center gap-1 text-xs font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
+                      {result.rate} <FaStar />
+                    </p>
+                    <div className='flex items-center gap-2 text-xs text-[#6d787d] font-normal'>
+                      <p>({result.ratings} Ratings)</p>
+                      <p className='w-[3px] h-[3px] bg-[#6d787d] border-[#6d787d] border rounded-full'></p>
+                      <p>{result.ratings >= 4 ? "Vary Good" : "Good"}</p>
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-3'>
+                    {result.tv && (
+                      <p className='flex items-center text-sm text-[#222] gap-1'>
+                        <FaTv /> TV
+                      </p>
+                    )}
+
+                    {result.wifi && (
+                      <p className='flex items-center text-sm text-[#222] gap-1'>
+                        <FaWifi /> Free Wifi
+                      </p>
+                    )}
+
+                    {result.elevator && (
+                      <p className='flex items-center text-sm text-[#222] gap-1'>
+                        <FaElevator /> Elevator
+                      </p>
+                    )}
+
+                    {result.kitchen && (
+                      <p className='flex items-center text-sm text-[#222] gap-1'>
+                        <FaKitchenSet /> Kitchen
+                      </p>
+                    )}
+
+                    {result.room_type && (
+                      <p className='flex items-center text-sm text-[#222] gap-1'>
+                        <TbAirConditioning /> AC
+                      </p>
+                    )}
+
+                    <p className='text-sm text-[#222]'>
+                      + {Math.floor(Math.random() * 20) + 1} more
+                    </p>
+                  </div>
+                </div>
+                <div className='flex justify-between items-end'>
+                  <div>
+                    <p className='text-2xl font-bold text-[#222]'>
+                      ₹{result.price}
+                    </p>
+                    <div className='text-[#6d787d] text-xs font-normal'>
+                      <span>+ ₹132 taxes & fees </span>· per room per night
+                    </div>
+                  </div>
+                  <div className='text-base font-bold space-x-4'>
+                    <button className='text-[#222] px-4 py-2 border border-[#222] rounded-[2px]'>
+                      View Details
+                    </button>
+                    <button className='bg-[#1ab64f] px-4 py-2 border border-[#1ab64f] rounded-sm text-color4'>
+                      Book Now
+                    </button>
                   </div>
                 </div>
               </div>
