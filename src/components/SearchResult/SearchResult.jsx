@@ -27,21 +27,24 @@ const SearchResult = () => {
           303 OYOs in Kolkata, West Bengal, India
         </h3>
         <div className='flex items-center gap-20'>
-          <div className='flex items-center gap-2'>
+          <div className='flex items-center gap-3'>
             <p className='text-sm font-normal text-[#222]'>Map View</p>
             <input type='checkbox' className='toggle text-[#2196f3]' />
           </div>
-          <div className='flex items-center gap-3'>
-            <p className='text-sm text-[#222] font-normal'>Sort By</p>
-            <select
-              name=''
-              id=''
-              className='text-[#222] outline-none border border-[#a6a6a6] p-[10px] rounded-[2px]'>
-              <option value='Popularity'>Popularity</option>
-              <option value='Guest Ratings'>Guest Ratings</option>
-              <option value='Price Low to High'>Price Low to High</option>
-              <option value='Price High to Low'>Price High to Low</option>
-            </select>
+          <div className='flex items-center gap-3 justify-between'>
+            <div>
+              <p className='text-sm text-[#222] font-normal'>Sort By</p>
+            </div>
+            <div>
+              <select className='select text-[#222] outline-none border border-[#a6a6a6]  rounded-[2px] w-full max-w-xs'>
+                <option value='Popularity' selected>
+                  Popularity
+                </option>
+                <option value='Guest Ratings'>Guest Ratings</option>
+                <option value='Price Low to High'>Price Low to High</option>
+                <option value='Price High to Low'>Price High to Low</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
