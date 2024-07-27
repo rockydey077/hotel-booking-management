@@ -44,47 +44,54 @@ const SearchResult = () => {
           </div>
         </div>
       </div>
-      <div className=''>
+      <div className='h-[250px]'>
         <div className=''>
           {searchResult.map((result) => (
             <div
               key={result.id}
               className='flex gap-4 py-10 border-b border-color7'>
-              <div className='lg:w-2/5 flex gap-[3px]'>
+              <div className='w-2/5 flex items-center gap-[3px]'>
                 <Swiper
                   navigation={true}
                   modules={[Navigation]}
-                  className='mySwiper'>
+                  className='mySwiper w-[84.4%]'>
                   {result?.image.map((img, idx) => (
                     <SwiperSlide key={idx}>
-                      <Image src={img} width={400} height={200} alt='' />
+                      <Image
+                        src={img}
+                        className='w-full'
+                        width={400}
+                        height={200}
+                        alt=''
+                      />
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                <div className='space-y-1'>
+                <div className='space-y-1 w-[15.6%]'>
                   {result?.room.map((img, index) => (
                     <Image
                       src={img}
-                      width={563}
-                      height={120}
+                      width={500}
+                      height={37}
                       alt=''
+                      className='w-full'
                       key={index}
                     />
                   ))}
                 </div>
               </div>
-              <div className='lg:w-3/5 flex flex-col gap-6'>
+              <div className='w-3/5 flex flex-col gap-6'>
                 <div className='flex gap-10 items-center'>
-                  <div className='lg:w-[80%]'>
+                  <div className='w-[80%]'>
                     <h3 className='text-xl font-bold text-[#222]'>
-                      {result.room_name.slice(0, 40)}
-                      {result.room_name.length >= 40 && "..."}
+                      {result.room_name.slice(0, 35)}
+                      {result.room_name.length >= 35 && "..."}
                     </h3>
                     <p className='text-base font-normal text-[#222]'>
                       {result.location}
                     </p>
                   </div>
-                  <div className='lg:w-[20%] text-xs font-semibold text-color10'>
+                  <div className='w-[20%] text-xs font-semibold text-color10'>
                     {Math.floor(Math.random() * 10) + 1}k+ people booked this
                     OYO in last {Math.floor(Math.random() * 10) + 1} months
                   </div>
@@ -148,10 +155,10 @@ const SearchResult = () => {
                   <div className='text-base font-bold space-x-4'>
                     <Link
                       href={`/${result.id}`}
-                      className='text-[#222] px-4 py-2 border border-[#222] rounded-[2px]'>
+                      className='text-[#222] px-4 py-2 border-2 border-[#222] rounded-[2px]'>
                       View Details
                     </Link>
-                    <button className='bg-[#1ab64f] px-4 py-2 border border-[#1ab64f] rounded-sm text-color4'>
+                    <button className='bg-[#1ab64f] px-4 py-2 border-none rounded-sm text-color4'>
                       Book Now
                     </button>
                   </div>

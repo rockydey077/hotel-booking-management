@@ -7,17 +7,21 @@
   background: #BDBDBD;
   border-radius: 15px;
 } */
+.main-body {
+  display: flex !important;
+}
 
 .sidebar {
   position: fixed;
-  top: 60px;
-  left: 0px;
+  /* top: 60px;
+  left: 0px; */
   width: 334px;
   height: 93%;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #bdbdbd;
 }
+
 .scroll-box {
   overflow: auto;
 }
@@ -27,3 +31,9 @@
   width: calc(100% - 334px);
   left: 334px;
 }
+
+/* @media screen and (min-width: 1536px) {
+  .main-body {
+    
+  }
+} */
