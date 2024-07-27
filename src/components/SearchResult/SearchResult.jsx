@@ -8,6 +8,7 @@ import Image from "next/image";
 import { FaAirFreshener, FaStar, FaTv, FaWifi } from "react-icons/fa";
 import { FaElevator, FaKitchenSet } from "react-icons/fa6";
 import { TbAirConditioning } from "react-icons/tb";
+import Link from "next/link";
 
 const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -88,7 +89,7 @@ const SearchResult = () => {
                     OYO in last {Math.floor(Math.random() * 10) + 1} months
                   </div>
                 </div>
-                <div className='flex-1'>
+                <div className='flex-1 space-y-2'>
                   <div className='flex items-center gap-[9px]'>
                     <p className='flex items-center gap-1 text-xs font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
                       {result.rate} <FaStar />
@@ -145,9 +146,11 @@ const SearchResult = () => {
                     </div>
                   </div>
                   <div className='text-base font-bold space-x-4'>
-                    <button className='text-[#222] px-4 py-2 border border-[#222] rounded-[2px]'>
+                    <Link
+                      href={`/${result.id}`}
+                      className='text-[#222] px-4 py-2 border border-[#222] rounded-[2px]'>
                       View Details
-                    </button>
+                    </Link>
                     <button className='bg-[#1ab64f] px-4 py-2 border border-[#1ab64f] rounded-sm text-color4'>
                       Book Now
                     </button>
