@@ -10,12 +10,16 @@ import { FaElevator, FaKitchenSet } from "react-icons/fa6";
 import { TbAirConditioning } from "react-icons/tb";
 import Link from "next/link";
 import "./searchResultStyle.css";
-import { GrUserPolice } from "react-icons/gr";
+import { GrLike, GrUserPolice } from "react-icons/gr";
+import styles from "./RatingModal.module.css";
 
 const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [images, setImages] = useState([]);
   const [idx, setIdx] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [ratingValue, setRatingValue] = useState(null);
+
   useEffect(() => {
     fetch("search.json")
       .then((res) => res.json())
@@ -32,6 +36,14 @@ const SearchResult = () => {
       const findImage = imageContainer.find((i) => i === img);
       setImages([findImage, ...restImage]);
     }
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -199,7 +211,12 @@ const SearchResult = () => {
                   </div>
                 </div>
                 <div className='flex-1 space-y-2'>
-                  <div className='flex items-center gap-[9px]'>
+                  <div
+                    onClick={() => {
+                      openModal();
+                      setRatingValue(result.ratings);
+                    }}
+                    className='flex relative items-center gap-[9px] cursor-pointer'>
                     <p className='flex items-center gap-1 text-xs rounded-sm font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
                       {result.rate} <FaStar />
                     </p>
@@ -208,8 +225,60 @@ const SearchResult = () => {
                       <p className='w-[3px] h-[3px] bg-[#6d787d] border-[#6d787d] border rounded-full'></p>
                       <p>{result.rate >= 4.0 ? "Vary Good" : "Good"}</p>
                     </div>
+                    {isOpen && (
+                      <div className={`${styles.modal} rounded`} onClick={closeModal}>
+                        <div
+                          className={`${styles.modalContent} rounded`}
+                          onClick={(e) => e.stopPropagation()}>
+                          <div className='bg-color7 p-4'>
+                            <span className={styles.close} onClick={closeModal}>
+                              &times;
+                            </span>
+                            <h3 className='text-base font-bold text-[#222]'>
+                              Rating Details
+                            </h3>
+                            <p className='text-xs font-normal text-[#222]'>
+                              Rated by {ratingValue} guests who stayed with OYO
+                              in the past
+                            </p>
+                          </div>
+                          <div className='p-4 space-y-3'>
+                            <div className='flex items-center justify-between text-sm'>
+                              <p>Breakfast:</p>
+                              <p className='flex items-center gap-1'>
+                                100% <GrLike />
+                              </p>
+                            </div>
+                            <div className='flex items-center justify-between text-sm'>
+                              <p>Wifi:</p>
+                              <p className='flex items-center gap-1'>
+                                100% <GrLike />
+                              </p>
+                            </div>
+                            <div className='flex items-center justify-between text-sm'>
+                              <p>Room Hygiene / Linen:</p>
+                              <p className='flex items-center gap-1'>
+                                100% <GrLike />
+                              </p>
+                            </div>
+                            <div className='flex items-center justify-between text-sm'>
+                              <p>Washroom:</p>
+                              <p className='flex items-center gap-1'>
+                                100% <GrLike />
+                              </p>
+                            </div>
+                            <div className='flex items-center justify-between text-sm'>
+                              <p>Hotel Staff:</p>
+                              <p className='flex items-center gap-1'>
+                                100% <GrLike />
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className='flex items-center gap-4'>
+                  <div className='flex items-center gap-6'>
                     {result.tv && (
                       <p className='flex items-center text-sm text-[#222] gap-1'>
                         <FaTv /> TV
