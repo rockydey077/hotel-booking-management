@@ -5,20 +5,34 @@ import "swiper/css";
 import "swiper/css/navigation";
 // import { Navigation } from "swiper/modules";
 import Image from "next/image";
-import { FaAirFreshener, FaStar, FaTv, FaWifi } from "react-icons/fa";
+import { FaAirFreshener, FaPollH, FaStar, FaTv, FaWifi } from "react-icons/fa";
 import { FaElevator, FaKitchenSet } from "react-icons/fa6";
 import { TbAirConditioning } from "react-icons/tb";
 import Link from "next/link";
 import "./searchResultStyle.css";
+import { GrUserPolice } from "react-icons/gr";
 
 const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([]);
-
+  const [images, setImages] = useState([]);
+  const [idx, setIdx] = useState(null);
   useEffect(() => {
     fetch("search.json")
       .then((res) => res.json())
-      .then((data) => setSearchResult(data));
+      .then((data) => {
+        setSearchResult(data);
+      });
   }, []);
+
+  const handleSetImg = (id, img) => {
+    const findResult = searchResult.filter((result) => result.id === id);
+    const imageContainer = findResult[0]?.image;
+    if (imageContainer) {
+      const restImage = imageContainer.filter((i) => i !== img);
+      const findImage = imageContainer.find((i) => i === img);
+      setImages([findImage, ...restImage]);
+    }
+  };
 
   return (
     <div>
@@ -54,7 +68,7 @@ const SearchResult = () => {
             <div
               key={result.id}
               className='flex gap-4 py-10 items-center border-b border-color7'>
-              <div className='w-[43%] flex items-center gap-[3px]'>
+              <div className='w-[43%] flex gap-[3px]'>
                 {/* <Swiper
                   navigation={true}
                   modules={[Navigation]}
@@ -71,48 +85,98 @@ const SearchResult = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper> */}
-                <div className='carousel w-[84.3%]'>
-                  {result?.image.map((img, index) => (
-                    <div
-                      key={index}
-                      id={`result${result.id}slide${index + 1}`}
-                      className='carousel-item relative w-full cursor-pointer slider-container'>
-                      <Image
-                        src={img}
-                        className='w-full'
-                        width={400}
-                        height={200}
-                        alt=''
-                      />
-                      <div className='slider-button '>
-                        <a
-                          href={`#result${result.id}slide${
-                            index + 1 === 1 ? 8 : index + 1 - 1
-                          }
+                <div className='relative w-[84.3%]'>
+                  <div className='carousel'>
+                    {result.id === idx
+                      ? images.map((img, index) => (
+                          <div
+                            key={index}
+                            id={`result${result.id}slide${index + 1}`}
+                            className='carousel-item relative w-full cursor-pointer slider-container'>
+                            <Image
+                              src={img}
+                              className='w-full'
+                              width={400}
+                              height={200}
+                              alt=''
+                            />
+                            <div className='slider-button '>
+                              <a
+                                onClick={() => setIdx(null)}
+                                href={`#result${result.id}slide${
+                                  index + 1 === 1 ? 8 : index + 1 - 1
+                                }
+                      `}
+                                className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
+                                ❮
+                              </a>
+                              <a
+                                onClick={() => setIdx(null)}
+                                href={`#result${result.id}slide${
+                                  index + 1 === 8 ? 1 : index + 1 + 1
+                                }
+                      `}
+                                className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
+                                ❯
+                              </a>
+                            </div>
+                          </div>
+                        ))
+                      : result?.image.map((img, index) => (
+                          <div
+                            key={index}
+                            id={`result${result.id}slide${index + 1}`}
+                            className='carousel-item relative w-full cursor-pointer slider-container'>
+                            <Image
+                              src={img}
+                              className='w-full'
+                              width={400}
+                              height={200}
+                              alt=''
+                            />
+                            <div className='slider-button '>
+                              <a
+                                onClick={() => setIdx(null)}
+                                href={`#result${result.id}slide${
+                                  index + 1 === 1 ? 8 : index + 1 - 1
+                                }
                           `}
-                          className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
-                          ❮
-                        </a>
-                        <a
-                          href={`#result${result.id}slide${
-                            index + 1 === 8 ? 1 : index + 1 + 1
-                          }
+                                className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
+                                ❮
+                              </a>
+                              <a
+                                onClick={() => setIdx(null)}
+                                href={`#result${result.id}slide${
+                                  index + 1 === 8 ? 1 : index + 1 + 1
+                                }
                           `}
-                          className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
-                          ❯
-                        </a>
-                      </div>
-                    </div>
-                  ))}
+                                className='btn btn-circle bg-[#00000047] hover:bg-[#00000047] border-none text-color4'>
+                                ❯
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+                  </div>
+                  <div className='absolute shadow-2xl text-[#222] flex items-center gap-1 top-3 left-3 bg-color4 px-1 py-[2px] rounded-sm text-xs font-normal'>
+                    <GrUserPolice />
+                    <p>
+                      {result?.type && result?.type}
+                      <span className='font-semibold'>Serviced</span>
+                    </p>
+                  </div>
                 </div>
                 <div className='space-y-1 w-[15.6%]'>
-                  {result?.room.map((img, index) => (
+                  {result?.image.slice(0, 5).map((img, index) => (
                     <Image
+                      onClick={() => {
+                        setIdx(result.id);
+                        handleSetImg(result.id, img);
+                      }}
                       src={img}
                       width={500}
                       height={37}
                       alt=''
-                      className='w-full'
+                      className='w-full cursor-pointer'
                       key={index}
                     />
                   ))}
