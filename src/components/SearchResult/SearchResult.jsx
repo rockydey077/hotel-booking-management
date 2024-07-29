@@ -226,7 +226,9 @@ const SearchResult = () => {
                       <p>{result.rate >= 4.0 ? "Vary Good" : "Good"}</p>
                     </div>
                     {isOpen && (
-                      <div className={`${styles.modal} rounded`} onClick={closeModal}>
+                      <div
+                        className={`${styles.modal} rounded`}
+                        onClick={closeModal}>
                         <div
                           className={`${styles.modalContent} rounded`}
                           onClick={(e) => e.stopPropagation()}>
@@ -329,9 +331,11 @@ const SearchResult = () => {
                       className='text-[#222] px-4 py-2 border-2 border-[#222] rounded-[2px]'>
                       View Details
                     </Link>
-                    <button className='bg-[#1ab64f] px-4 py-2 border-none rounded text-color4'>
+                    <Link
+                      href={`/searchPage/${result.id}`}
+                      className='bg-[#1ab64f] px-4 py-2 border-none rounded text-color4'>
                       Book Now
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
