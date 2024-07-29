@@ -1,11 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdOutlineDoorBack } from "react-icons/md";
 import { SiTicktick } from "react-icons/si";
+import styles from "./bookingStyle.module.css";
+import { FaStar } from "react-icons/fa";
+import Image from "next/image";
+import { SlCalender } from "react-icons/sl";
 
 const BookingPage = ({ params }) => {
-  console.log(params.bookings);
+  const [bookedItem, setBookedItem] = useState({});
+
+  useEffect(() => {
+    fetch("../search.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setBookedItem(
+          data.find((item) => item.id === parseInt(params.bookings))
+        );
+      });
+  }, [params]);
+
   return (
     <div className='max-w-[1130px] mx-auto'>
       <div className='flex text-[#ee2b24] items-center gap-1 text-base font-semibold mt-[52px] mb-7'>
@@ -107,7 +122,71 @@ const BookingPage = ({ params }) => {
             </div>
           </div>
         </div>
-        <div className='w-[420px]'></div>
+        <div className='w-[420px]'>
+          <div
+            className={`${styles.booking_container} rounded border border-[#7a7a7a2b] p-6`}>
+            <div className='flex'>
+              <div className='space-y-2'>
+                <h3 className='text-base font-bold'>{bookedItem.room_name}</h3>
+                <div className='flex relative items-center gap-[9px] cursor-pointer'>
+                  <p className='flex items-center gap-1 text-xs rounded-sm font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
+                    {bookedItem.rate} <FaStar />
+                  </p>
+                  <div className='flex items-center gap-2 text-xs text-[#6d787d] font-normal'>
+                    <p>({bookedItem.ratings} Ratings)</p>
+                    <p className='w-[3px] h-[3px] bg-[#6d787d] border-[#6d787d] border rounded-full'></p>
+                    <p>{bookedItem.rate >= 4.0 ? "Vary Good" : "Good"}</p>
+                  </div>
+                </div>
+                <p className='text-xs font-bold'>1 Night</p>
+              </div>
+              <div>
+                <Image
+                  src={bookedItem.image[0]}
+                  width={100}
+                  height={200}
+                  alt=''
+                  className='rounded border w-full'
+                />
+              </div>
+            </div>
+            <div className='my-[18px]'>
+              <div className='pt-4 flex justify-between items-center mr-8'>
+                <div className='flex items-center gap-3 text-sm text-[#0c0a15] font-semibold'>
+                  <SlCalender className='text-[#7a7a7aa1] text-xl' />
+                  <p>Mon, 29 Jul - Tue, 30 Jul</p>
+                </div>
+                <div className='text-sm text-[#0c0a15] font-semibold'>
+                  1 Room, 1 Guest
+                </div>
+              </div>
+              <div className='my-3 border-b border-[#7a7a7a50]'></div>
+              <div className='flex items-center gap-3 pb-3'>
+                <MdOutlineDoorBack className='text-[#7a7a7aa1] text-xl' />
+                <p className='text-sm text-[#0c0a15] font-semibold'>Classic</p>
+              </div>
+              <div className='my-4'>
+                <div className='my-3 flex items-center justify-between text-sm'>
+                  <h3>Room price for 1 Night X 1 Guest</h3>
+                  <p className='font-semibold'>₹4258</p>
+                </div>
+                <div className='my-3 flex items-center justify-between text-sm'>
+                  <h3>Instant discount</h3>
+                  <p className='font-semibold'>-₹1308</p>
+                </div>
+                <div className='my-3 flex items-center justify-between text-sm'>
+                  <h3>53% Coupon Discount</h3>
+                  <p className='font-semibold'>-₹1564</p>
+                </div>
+                <div className='my-6 border-b border-[#7a7a7a50]'></div>
+                <div className='my-3 flex items-center justify-between text-sm'>
+                  <h3 className='text-base'>Payable Amount</h3>
+                  <p className='font-bold text-[22px]'>₹1386</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
