@@ -111,6 +111,19 @@ const BookingPage = ({ params }) => {
                   </div>
                   <div className='grid grid-cols-2 gap-7'>
                     <div>
+                      <div>
+                        <label
+                          htmlFor='file'
+                          className='block text-base font-semibold mb-[9px]'>
+                          Upload NID
+                        </label>
+                        <input type='file' name='file' id='file' />
+                      </div>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div className='grid grid-cols-2 gap-7'>
+                    <div>
                       <button className='w-full bg-[#1ab64f] cursor-pointer text-color4 mt-4 text-base font-bold rounded p-[14px]'>
                         Pay Now
                       </button>
