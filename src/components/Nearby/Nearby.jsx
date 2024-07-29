@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 const Nearby = ({ activeTab, setActiveTab }) => {
   return (
     <div>
-      <h2 className='text-[22px] font-bold'>What's nearby?</h2>
+      <h2 className='text-[22px] font-bold'>What&apos;s nearby?</h2>
       <div className='mt-5 border border-color8 pt-5 pl-5 rounded'>
         <div className='flex items-center gap-6 font-semibold'>
           <div
