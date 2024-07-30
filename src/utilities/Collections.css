@@ -1,6 +1,7 @@
 .checkbox {
-  width: 12px !important;
-  height: 12px !important;
+  width: 15px !important;
+  height: 15px !important;
   border-radius: 2px !important;
   --chkbg: #52B520 !important;
+  background-color: rgba(0, 0, 0, 0.05);
 }

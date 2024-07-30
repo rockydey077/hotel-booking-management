@@ -2,9 +2,22 @@
 import React, { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const Categories = () => {
-  const [category, setCategory] = useState([]);
+const Categories = ({
+  cateFilters,
+  setCateFilters,
+  cateFilterList,
+  setClear,
+}) => {
   const [show, setShow] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCateFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
+    setClear(true);
+  };
 
   useEffect(() => {
     fetch("categories.json")
@@ -18,24 +31,36 @@ const Categories = () => {
         style={{ display: "flex", flexDirection: "column", gap: "10px" }}
         className=''>
         {show
-          ? category.map((c, index) => (
-              <div key={index} className='form-control'>
+          ? cateFilterList.map((filter) => (
+              <div key={filter.id} className='form-control'>
                 <label className='label justify-start gap-2'>
-                  <input type='checkbox' className='checkbox mb-5' />
+                  <input
+                    name={filter.id}
+                    checked={cateFilters[filter.id] || false}
+                    onChange={handleCheckboxChange}
+                    type='checkbox'
+                    className='checkbox mb-5'
+                  />
                   <p className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                    <span className='font-semibold'>{c.title}</span> -{" "}
-                    <span>{c.description}</span>
+                    <span className='font-semibold'>{filter.title}</span> -{" "}
+                    <span>{filter.description}</span>
                   </p>
                 </label>
               </div>
             ))
-          : category.slice(0, 5).map((c, index) => (
-              <div key={index} className='form-control'>
+          : cateFilterList.slice(0, 5).map((filter) => (
+              <div key={filter.id} className='form-control'>
                 <label className='label justify-start gap-2'>
-                  <input type='checkbox' className='checkbox mb-5' />
+                  <input
+                    name={filter.id}
+                    checked={cateFilters[filter.id] || false}
+                    onChange={handleCheckboxChange}
+                    type='checkbox'
+                    className='checkbox mb-5'
+                  />
                   <p className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                    <span className='font-semibold'>{c.title}</span> -{" "}
-                    <span>{c.description}</span>
+                    <span className='font-semibold'>{filter.title}</span> -{" "}
+                    <span>{filter.description}</span>
                   </p>
                 </label>
               </div>

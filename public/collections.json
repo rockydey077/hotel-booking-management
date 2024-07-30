@@ -1,9 +1,9 @@
 [
-  "Family OYOs",
-  "For Group Travellers",
-  "Local IDs accepted",
-  "OYOs welcomes couples",
-  "Near Metro Station",
-  "Business travellers",
-  "Near Howrah Station"
+  { "id": "familyOyos", "label": "Family OYOs" },
+  { "id": "groupTravellers", "label": "For Group Travellers" },
+  { "id": "localAccepted", "label": "Local IDs accepted" },
+  { "id": "oyosCouples", "label": "OYOs welcomes couples" },
+  { "id": "nearMetro", "label": "Near Metro Station" },
+  { "id": "businessTravellers", "label": "Business travellers" },
+  { "id": "howrahStation", "label": "Near Howrah Station" }
 ]
