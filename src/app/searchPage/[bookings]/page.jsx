@@ -671,12 +671,12 @@ const BookingPage = ({ params }) => {
                   </div>
                   {isOpen && (
                     <div
-                      className={`${styles.modal} rounded`}
+                      className={`${styles.modal}`}
                       onClick={closeModal}>
                       <div
                         className={`${styles.modalContent} rounded`}
                         onClick={(e) => e.stopPropagation()}>
-                        <div className='bg-color7 p-4'>
+                        <div className='bg-color7 p-4 rounded-t'>
                           <span className={styles.close} onClick={closeModal}>
                             &times;
                           </span>

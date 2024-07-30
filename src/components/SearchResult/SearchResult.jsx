@@ -19,6 +19,7 @@ const SearchResult = () => {
   const [idx, setIdx] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [ratingValue, setRatingValue] = useState(null);
+  const [indexValue, setIndexValue] = useState(null);
 
   useEffect(() => {
     fetch("search.json")
@@ -215,6 +216,7 @@ const SearchResult = () => {
                     onClick={() => {
                       openModal();
                       setRatingValue(result.ratings);
+                      setIndexValue(result.id);
                     }}
                     className='flex relative items-center gap-[9px] cursor-pointer'>
                     <p className='flex items-center gap-1 text-xs rounded-sm font-semibold bg-[#52b520] px-[6px] py-[3px] w-fit text-color4'>
@@ -225,14 +227,14 @@ const SearchResult = () => {
                       <p className='w-[3px] h-[3px] bg-[#6d787d] border-[#6d787d] border rounded-full'></p>
                       <p>{result.rate >= 4.0 ? "Vary Good" : "Good"}</p>
                     </div>
-                    {isOpen && (
+                    {isOpen && result.id === indexValue && (
                       <div
-                        className={`${styles.modal} rounded`}
+                        className={`${styles.modal}`}
                         onClick={closeModal}>
                         <div
                           className={`${styles.modalContent} rounded`}
                           onClick={(e) => e.stopPropagation()}>
-                          <div className='bg-color7 p-4'>
+                          <div className='bg-color7 p-4 rounded-t'>
                             <span className={styles.close} onClick={closeModal}>
                               &times;
                             </span>

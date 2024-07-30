@@ -1,26 +1,24 @@
 .modal {
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: fixed;
+  /* align-items: center; */
+  position: absolute;
   z-index: 1;
-  right: 225px;
+  right: 163px;
   top: 35px;
-  width: 30%;
-  height: 100%;
-  overflow: auto;
+  width: 354px;
+  height: fit-content;
+  /* overflow: auto; */
   /* background-color: rgba(0, 0, 0, 0.4); */
-  padding-top: 60px;
- 
 }
 
 .modalContent {
   background-color: #fefefe;
-  margin: 5% auto;
+  margin: 0 auto;
   /* padding: 20px; */
   /* border: 1px solid #888; */
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  width: 80%;
+  width: 100%;
 }
 
 .close {
