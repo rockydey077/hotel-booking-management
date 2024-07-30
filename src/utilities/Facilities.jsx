@@ -5,6 +5,8 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 const Facilities = () => {
   const [facility, setFacility] = useState([]);
   const [show, setShow] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [idx, setIdx] = useState(null);
 
   useEffect(() => {
     fetch("facilities.json")
@@ -20,14 +22,39 @@ const Facilities = () => {
         {show
           ? facility.map((f, index) => (
               <div className='flex items-center gap-2' key={index}>
-                <input type='checkbox' name='' id='' />
-                <p className='text-sm font-normal text-[#222]'>{f}</p>
+                <input
+                  checked={index === idx && isChecked}
+                  type='checkbox'
+                  name=''
+                  id=''
+                />
+                <p
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                    setIdx(index);
+                  }}
+                  className='text-sm font-normal text-[#222] cursor-pointer'>
+                  {f}
+                </p>
               </div>
             ))
           : facility.slice(0, 5).map((f, index) => (
               <div className='flex items-center gap-2' key={index}>
-                <input className='' type='checkbox' name='' id='' />
-                <p className='text-sm font-normal text-[#222]'>{f}</p>
+                <input
+                  checked={index === idx && isChecked}
+                  className=''
+                  type='checkbox'
+                  name=''
+                  id=''
+                />
+                <p
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                    setIdx(index);
+                  }}
+                  className='text-sm font-normal text-[#222] cursor-pointer'>
+                  {f}
+                </p>
               </div>
             ))}
       </div>

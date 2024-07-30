@@ -26,7 +26,7 @@ const FilterResult = () => {
                   padding: "2px 10px 2px 10px",
                   backgroundColor: "#0000000d",
                 }}
-                className=''
+                className='cursor-pointer'
                 key={index}>
                 {f}
               </p>
@@ -37,7 +37,7 @@ const FilterResult = () => {
                   padding: "2px 10px 2px 10px",
                   backgroundColor: "#0000000d",
                 }}
-                className=''
+                className='cursor-pointer'
                 key={index}>
                 {f}
               </p>

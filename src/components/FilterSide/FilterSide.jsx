@@ -10,6 +10,7 @@ const FilterSide = () => {
   const [values, setValues] = useState([397, 2603]);
   const MIN = 0;
   const MAX = 3000;
+
   return (
     <div className=''>
       <h1 className='text-[26px] font-bold text-[#333]'>Filters</h1>
@@ -119,15 +120,21 @@ const FilterSide = () => {
         <div className='space-y-[18px]'>
           <div className='flex items-center gap-2'>
             <input className='' type='checkbox' name='' id='' />
-            <p className='text-sm font-normal text-[#222]'>Resort</p>
+            <p className='text-sm font-normal text-[#222] cursor-pointer'>
+              Resort
+            </p>
           </div>
           <div className='flex items-center gap-2'>
             <input className='' type='checkbox' name='' id='' />
-            <p className='text-sm font-normal text-[#222]'>OYO Home</p>
+            <p className='text-sm font-normal text-[#222] cursor-pointer'>
+              OYO Home
+            </p>
           </div>
           <div className='flex items-center gap-2'>
             <input className='' type='checkbox' name='' id='' />
-            <p className='text-sm font-normal text-[#222]'>Hotel</p>
+            <p className='text-sm font-normal text-[#222] cursor-pointer'>
+              Hotel
+            </p>
           </div>
         </div>
       </div>
@@ -140,7 +147,9 @@ const FilterSide = () => {
         <h3 className='text-sm font-bold text-[#222] mb-4'>Home Facilities</h3>
         <div className='flex items-center gap-2'>
           <input type='checkbox' name='' id='' />
-          <p className='text-sm font-normal text-[#222]'>Pay at Hotel</p>
+          <p className='text-sm font-normal text-[#222] cursor-pointer'>
+            Pay at Hotel
+          </p>
         </div>
       </div>
     </div>

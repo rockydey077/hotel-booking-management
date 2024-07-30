@@ -5,6 +5,8 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 const Collections = () => {
   const [collection, setCollection] = useState([]);
   const [show, setShow] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [idx, setIdx] = useState(null);
 
   useEffect(() => {
     fetch("collections.json")
@@ -21,15 +23,48 @@ const Collections = () => {
         {show
           ? collection.map((c, index) => (
               <div className='flex items-center gap-2' key={index}>
-                <input type='checkbox' name='' id='' />
-                <p className='text-sm font-normal text-[#222]'>{c}</p>
+                <input
+                  checked={index === idx && isChecked}
+                  type='checkbox'
+                  name=''
+                  id=''
+                />
+                <p
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                    setIdx(index);
+                  }}
+                  className='text-sm font-normal text-[#222] cursor-pointer'>
+                  {c}
+                </p>
               </div>
             ))
           : collection.slice(0, 5).map((c, index) => (
               <div className='flex items-center gap-2' key={index}>
-                <input className='' type='checkbox' name='' id='' />
-                <p className='text-sm font-normal text-[#222]'>{c}</p>
+                <input
+                  checked={index === idx && isChecked}
+                  className=''
+                  type='checkbox'
+                  name=''
+                  id=''
+                />
+                <p
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                    setIdx(index);
+                  }}
+                  className='text-sm font-normal text-[#222] cursor-pointer'>
+                  {c}
+                </p>
               </div>
+              // <div key={index} className='form-control'>
+              //   <label className='label justify-start gap-2'>
+              //     <input type='checkbox' className='checkbox !w-3 !h-3' />
+              //     <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+              //       {c}
+              //     </span>
+              //   </label>
+              // </div>
             ))}
       </div>
       <div>

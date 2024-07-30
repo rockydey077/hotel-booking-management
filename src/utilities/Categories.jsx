@@ -5,6 +5,8 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 const Categories = () => {
   const [category, setCategory] = useState([]);
   const [show, setShow] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [idx, setIdx] = useState(null);
 
   useEffect(() => {
     fetch("categories.json")
@@ -20,8 +22,19 @@ const Categories = () => {
         {show
           ? category.map((c, index) => (
               <div className='flex gap-2' key={index}>
-                <input className='mb-5' type='checkbox' name='' id='' />
-                <p className='text-sm font-normal text-[#222]'>
+                <input
+                  checked={index === idx && isChecked}
+                  className='mb-5'
+                  type='checkbox'
+                  name=''
+                  id=''
+                />
+                <p
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                    setIdx(index);
+                  }}
+                  className='text-sm font-normal text-[#222] cursor-pointer'>
                   <span className='font-semibold'>{c.title}</span> -{" "}
                   <span>{c.description}</span>
                 </p>
@@ -29,8 +42,19 @@ const Categories = () => {
             ))
           : category.slice(0, 5).map((c, index) => (
               <div className='flex gap-2' key={index}>
-                <input className='mb-5' type='checkbox' name='' id='' />
-                <p className='text-sm font-normal text-[#222]'>
+                <input
+                  checked={index === idx && isChecked}
+                  className='mb-5'
+                  type='checkbox'
+                  name=''
+                  id=''
+                />
+                <p
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                    setIdx(index);
+                  }}
+                  className='text-sm font-normal text-[#222] cursor-pointer'>
                   <span className='font-semibold'>{c.title}</span> -{" "}
                   <span>{c.description}</span>
                 </p>
