@@ -21,6 +21,7 @@ import { LuPiSquare } from "react-icons/lu";
 import { IoMdLaptop } from "react-icons/io";
 import { CiBank } from "react-icons/ci";
 import { CiCreditCard2 } from "react-icons/ci";
+import Link from "next/link";
 
 const BookingPage = ({ params }) => {
   const [bookedItem, setBookedItem] = useState({});
@@ -73,10 +74,12 @@ const BookingPage = ({ params }) => {
 
   return (
     <div className='max-w-[1130px] mx-auto'>
-      <div className='flex text-[#ee2b24] items-center gap-1 text-base font-semibold mt-[52px] mb-7'>
+      <Link
+        href={`/${params.bookings}`}
+        className='flex text-[#ee2b24] items-center gap-1 text-base font-semibold mt-[52px] mb-7'>
         <IoIosArrowBack className='text-2xl font-light' />
         <p>Modify your booking</p>
-      </div>
+      </Link>
       <div className='flex gap-6 px-5'>
         <div className='w-[646px]'>
           <div className='flex gap-1 mb-4 justify-center border border-[#f5a62330] p-4 bg-[#fef6e9] rounded'>
@@ -670,9 +673,7 @@ const BookingPage = ({ params }) => {
                     <p>{bookedItem.rate >= 4.0 ? "Vary Good" : "Good"}</p>
                   </div>
                   {isOpen && (
-                    <div
-                      className={`${styles.modal}`}
-                      onClick={closeModal}>
+                    <div className={`${styles.modal}`} onClick={closeModal}>
                       <div
                         className={`${styles.modalContent} rounded`}
                         onClick={(e) => e.stopPropagation()}>

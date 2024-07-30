@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaStar, FaWifi } from "react-icons/fa";
@@ -14,14 +15,14 @@ const RoomDetails = ({ room }) => {
     <div>
       <div className='flex items-start gap-8 justify-between'>
         <h1 className='text-[32px] font-bold'>{room.room_name}</h1>
-        <div className=''>
+        <Link href={"#review"} className='cursor-pointer'>
           <div className='flex items-center bg-[#58AC00] w-fit gap-1 font-semibold text-color9 rounded-t-[2px] p-2 text-xl'>
             <span className='text-xl'>4.4</span> <FaStar />
           </div>
           <p className='bg-color9 rounded-b-[2px] w-fit text-xs p-[2px]'>
             455 Ratings
           </p>
-        </div>
+        </Link>
       </div>
       <p className='text-color8 lg:w-[85%] text-base font-normal mt-4'>
         {room.description}
@@ -119,7 +120,7 @@ const RoomDetails = ({ room }) => {
         </div>
       </div>
       {/* Ratings */}
-      <div>
+      <div id="review">
         <h2 className='text-[22px] font-bold mb-5'>Ratings and reviews</h2>
         <div className='shadow rounded border border-color9 flex items-center'>
           <div className='flex justify-center lg:w-2/5 items-center'>

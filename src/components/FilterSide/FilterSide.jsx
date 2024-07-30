@@ -117,24 +117,30 @@ const FilterSide = () => {
         <h3 className='text-sm font-bold text-[#222] mb-4'>
           Accomodation Type
         </h3>
-        <div className='space-y-[18px]'>
-          <div className='flex items-center gap-2'>
-            <input className='' type='checkbox' name='' id='' />
-            <p className='text-sm font-normal text-[#222] cursor-pointer'>
-              Resort
-            </p>
+        <div className='space-y-[10px]'>
+          <div className='form-control'>
+            <label className='label justify-start gap-2'>
+              <input type='checkbox' className='checkbox' />
+              <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+                Resort
+              </span>
+            </label>
           </div>
-          <div className='flex items-center gap-2'>
-            <input className='' type='checkbox' name='' id='' />
-            <p className='text-sm font-normal text-[#222] cursor-pointer'>
-              OYO Home
-            </p>
+          <div className='form-control'>
+            <label className='label justify-start gap-2'>
+              <input type='checkbox' className='checkbox' />
+              <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+                OYO Home
+              </span>
+            </label>
           </div>
-          <div className='flex items-center gap-2'>
-            <input className='' type='checkbox' name='' id='' />
-            <p className='text-sm font-normal text-[#222] cursor-pointer'>
-              Hotel
-            </p>
+          <div className='form-control'>
+            <label className='label justify-start gap-2'>
+              <input type='checkbox' className='checkbox' />
+              <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+                Hotel
+              </span>
+            </label>
           </div>
         </div>
       </div>
@@ -145,11 +151,13 @@ const FilterSide = () => {
       <div className='my-6 border-b border-color8'></div>
       <div className='pb-6'>
         <h3 className='text-sm font-bold text-[#222] mb-4'>Home Facilities</h3>
-        <div className='flex items-center gap-2'>
-          <input type='checkbox' name='' id='' />
-          <p className='text-sm font-normal text-[#222] cursor-pointer'>
-            Pay at Hotel
-          </p>
+        <div className='form-control'>
+          <label className='label justify-start gap-2'>
+            <input type='checkbox' className='checkbox' />
+            <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+              Pay at Hotel
+            </span>
+          </label>
         </div>
       </div>
     </div>
