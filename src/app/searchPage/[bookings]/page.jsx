@@ -1,20 +1,26 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
+import {
+  IoIosArrowBack,
+  IoIosArrowDown,
+  IoIosArrowForward,
+} from "react-icons/io";
 import { MdKeyboardArrowDown, MdOutlineDoorBack } from "react-icons/md";
 import { SiTicktick } from "react-icons/si";
 import styles from "./bookingStyle.module.css";
-import { FaStar } from "react-icons/fa";
+import { FaRegCreditCard, FaStar } from "react-icons/fa";
 import Image from "next/image";
 import { SlCalender } from "react-icons/sl";
 import { GrLike } from "react-icons/gr";
 import { AiOutlineSafety } from "react-icons/ai";
 import { IoIosArrowUp } from "react-icons/io";
 import "./bookingStyles.css";
-import { CiCreditCard1 } from "react-icons/ci";
+import { CiCircleQuestion, CiCreditCard1 } from "react-icons/ci";
 import { LiaWalletSolid } from "react-icons/lia";
 import { LuPiSquare } from "react-icons/lu";
 import { IoMdLaptop } from "react-icons/io";
+import { CiBank } from "react-icons/ci";
+import { CiCreditCard2 } from "react-icons/ci";
 
 const BookingPage = ({ params }) => {
   const [bookedItem, setBookedItem] = useState({});
@@ -22,12 +28,29 @@ const BookingPage = ({ params }) => {
   const [ratingValue, setRatingValue] = useState(null);
   const [show, setShow] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [bankShow, setBankShow] = useState(false);
+  const [gPay, setgPay] = useState(false);
+  const [pPay, setpPay] = useState(false);
+  const [card, setCard] = useState(false);
 
   const tabs = [
     "Credit/Debit/ATM Cards",
     "Wallets",
     "Pay by any UPI app",
     "Netbanking",
+  ];
+
+  const banks = [
+    "State Bank of India",
+    "ICICI Bank",
+    "Axis Bank",
+    "Kotak Bank",
+    "Airtel Payments Bank",
+    "Bank of India",
+    "Canara Bank",
+    "Central Bank of India",
+    "DENA Bank",
+    "HDFC Bank",
   ];
 
   useEffect(() => {
@@ -99,7 +122,7 @@ const BookingPage = ({ params }) => {
                       <span>100% safe and secure payments</span>
                     </p>
                   </div>
-                  <div className='px-6 py-8 space-x-9'>
+                  <div className='px-6 py-8 space-x-9 flex'>
                     <div className='w-[40%]'>
                       <div className='shadow-lg flex items-center justify-between px-6 py-[18px] border border-[#f0f1f3] rounded mb-3'>
                         <p className='text-base font-bold'>Pay Now</p>
@@ -115,7 +138,13 @@ const BookingPage = ({ params }) => {
                               className={`tab-item flex items-center gap-2 ${
                                 activeTab === index ? "active" : ""
                               }`}
-                              onClick={() => setActiveTab(index)}>
+                              onClick={() => {
+                                setActiveTab(index);
+                                setBankShow(false);
+                                setgPay(false);
+                                setpPay(false);
+                                setCard(false);
+                              }}>
                               {tab === "Credit/Debit/ATM Cards" ? (
                                 <CiCreditCard1 className='text-2xl' />
                               ) : tab === "Wallets" ? (
@@ -131,7 +160,388 @@ const BookingPage = ({ params }) => {
                         </div>
                       </div>
                     </div>
-                    <div className='w-[60%]'></div>
+                    <div className='w-[60%]'>
+                      {activeTab === 0 && (
+                        <div>
+                          <div className='border border-[#f0f1f3] rounded-sm py-[10px] px-4'>
+                            <div className='mb-4'>
+                              <div
+                                onClick={() => setCard(!card)}
+                                className='flex items-center justify-between cursor-pointer'>
+                                <div>
+                                  <div className='flex items-center gap-4 mb-[6px]'>
+                                    <span>
+                                      <CiCreditCard2 className='text-2xl' />
+                                    </span>
+                                    <p className='text-sm font-semibold text-color3'>
+                                      Add new card
+                                    </p>
+                                  </div>
+                                  {card ? (
+                                    <p className='text-base font-semibold'>
+                                      Your card details
+                                    </p>
+                                  ) : (
+                                    <div className='flex items-center gap-2'>
+                                      <p className='text-xs'>We accept</p>
+                                      <div className='w-[20px] h-[14px] cursor-pointer'>
+                                        <Image
+                                          src='https://payments-s3.oyorooms.io/pwa/icons/cards/visa.png'
+                                          width={96}
+                                          height={72}
+                                          alt=''
+                                          className='w-full h-full'
+                                        />
+                                      </div>
+                                      <div className='w-[20px] h-[14px] cursor-pointer'>
+                                        <Image
+                                          src='https://payments-s3.oyorooms.io/pwa/icons/cards/mastercard.png'
+                                          width={96}
+                                          height={72}
+                                          alt=''
+                                          className='w-full h-full'
+                                        />
+                                      </div>
+                                      <div className='w-[20px] h-[14px] cursor-pointer'>
+                                        <Image
+                                          src='https://payments-s3.oyorooms.io/pwa/icons/cards/amex.png'
+                                          width={96}
+                                          height={72}
+                                          alt=''
+                                          className='w-full h-full'
+                                        />
+                                      </div>
+                                      <div className='w-[20px] h-[14px] cursor-pointer'>
+                                        <Image
+                                          src='https://payments-s3.oyorooms.io/pwa/icons/cards/diners.png'
+                                          width={96}
+                                          height={72}
+                                          alt=''
+                                          className='w-full h-full'
+                                        />
+                                      </div>
+                                      <div className='w-[20px] h-[14px] cursor-pointer'>
+                                        <Image
+                                          src='https://payments-s3.oyorooms.io/pwa/icons/cards/rupay.png'
+                                          width={96}
+                                          height={72}
+                                          alt=''
+                                          className='w-full h-full'
+                                        />
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                                <p className='text-lg opacity-70'>
+                                  {card ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                                </p>
+                              </div>
+                            </div>
+                            {card && (
+                              <div>
+                                <div className='!h-[240px] space-y-3 overflow-x-hidden overflow-y-scroll'>
+                                  <div className='border border-[#00000014] rounded-sm p-[14px] flex justify-between items-center'>
+                                    <input
+                                      type='text'
+                                      placeholder='Card number'
+                                      name=''
+                                      id=''
+                                      className='outline-none'
+                                    />
+                                    <span>
+                                      <FaRegCreditCard className='text-2xl opacity-50' />
+                                    </span>
+                                  </div>
+                                  <div className='border border-[#00000014] rounded-sm p-[14px]'>
+                                    <input
+                                      type='text'
+                                      name=''
+                                      placeholder='Card holder number'
+                                      id=''
+                                      className='outline-none w-full'
+                                    />
+                                  </div>
+                                  <div className='flex gap-4'>
+                                    <div className='w-[66%] flex items-center gap-[6px] border border-[#00000014] rounded-sm p-[14px]'>
+                                      <p className='text-xs text-[#999999]'>
+                                        Valid thru
+                                      </p>
+                                      <select name='' id=''>
+                                        <option value='MM'>MM</option>
+                                        <option value='01'>01</option>
+                                        <option value='02'>02</option>
+                                        <option value='03'>03</option>
+                                        <option value='04'>04</option>
+                                      </select>
+                                      <select name='' id=''>
+                                        <option value='YYYY'>YYYY</option>
+                                        <option value='2019'>2019</option>
+                                        <option value='2020'>2020</option>
+                                        <option value='2021'>2021</option>
+                                        <option value='2022'>2022</option>
+                                        <option value='2023'>2023</option>
+                                        <option value='2024'>2024</option>
+                                      </select>
+                                    </div>
+                                    <div className='w-[29%] border border-[#00000014] rounded-sm py-[14px] pl-[14px] relative'>
+                                      <input
+                                        type='text'
+                                        name=''
+                                        placeholder='CVV'
+                                        id=''
+                                        className='w-fit outline-none'
+                                      />
+                                      <span className='absolute top-[36%] right-5'>
+                                        <CiCircleQuestion />
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className='flex gap-20 justify-between'>
+                                      <p className='text-[13px] text-[#141414]'>
+                                        Secure your card as per RBI guidelines
+                                      </p>
+                                      <input
+                                        type='checkbox'
+                                        className='toggle'
+                                      />
+                                    </div>
+                                    <p className='text-[13px] text-[#EE2E24] cursor-pointer '>
+                                      Learn more
+                                    </p>
+                                  </div>
+                                </div>
+                                <div>
+                                  <button className='w-full text-sm font-semibold rounded-md py-3 my-3 bg-[#f2f2f2] text-[#0000004d]'>
+                                    Pay Now ₹1386
+                                  </button>
+                                  <div className='flex items-center gap-2'>
+                                    <p className='text-xs'>We accept</p>
+                                    <div className='w-[20px] h-[14px] cursor-pointer'>
+                                      <Image
+                                        src='https://payments-s3.oyorooms.io/pwa/icons/cards/visa.png'
+                                        width={96}
+                                        height={72}
+                                        alt=''
+                                        className='w-full h-full'
+                                      />
+                                    </div>
+                                    <div className='w-[20px] h-[14px] cursor-pointer'>
+                                      <Image
+                                        src='https://payments-s3.oyorooms.io/pwa/icons/cards/mastercard.png'
+                                        width={96}
+                                        height={72}
+                                        alt=''
+                                        className='w-full h-full'
+                                      />
+                                    </div>
+                                    <div className='w-[20px] h-[14px] cursor-pointer'>
+                                      <Image
+                                        src='https://payments-s3.oyorooms.io/pwa/icons/cards/amex.png'
+                                        width={96}
+                                        height={72}
+                                        alt=''
+                                        className='w-full h-full'
+                                      />
+                                    </div>
+                                    <div className='w-[20px] h-[14px] cursor-pointer'>
+                                      <Image
+                                        src='https://payments-s3.oyorooms.io/pwa/icons/cards/diners.png'
+                                        width={96}
+                                        height={72}
+                                        alt=''
+                                        className='w-full h-full'
+                                      />
+                                    </div>
+                                    <div className='w-[20px] h-[14px] cursor-pointer'>
+                                      <Image
+                                        src='https://payments-s3.oyorooms.io/pwa/icons/cards/rupay.png'
+                                        width={96}
+                                        height={72}
+                                        alt=''
+                                        className='w-full h-full'
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {activeTab === 1 && (
+                        <div className='px-4 py-3 flex justify-between items-center opacity-30 cursor-pointer'>
+                          <div className='flex items-center gap-2'>
+                            <Image
+                              src='https://payments-s3.oyorooms.io/assets/images/ola_postpaid_icon.png'
+                              alt=''
+                              width={200}
+                              height={200}
+                              className='w-6 h-6'
+                            />
+                            <div>
+                              <h4 className='text-sm font-medium'>
+                                OlaMoney Postpaid
+                              </h4>
+                              <p className='text-[9px] font-semibold'>
+                                Ola Money Postpaid not available on merchant
+                              </p>
+                            </div>
+                          </div>
+                          <span>
+                            <IoIosArrowForward className='text-xs' />
+                          </span>
+                        </div>
+                      )}
+                      {activeTab === 2 && (
+                        <div>
+                          <div className='flex justify-between items-center'>
+                            <p className='text-xs font-normal'>
+                              Pay by any UPI app
+                            </p>
+                            <div className='h-[14px]'>
+                              <Image
+                                src='https://payments-s3.oyorooms.io/assets/images/upi_logo_website.png'
+                                alt=''
+                                width={200}
+                                height={200}
+                                className='h-full w-auto'
+                              />
+                            </div>
+                          </div>
+                          <div className='px-3'>
+                            <div className='py-3 cursor-pointer border-b border-[#dcdcdc]'>
+                              <div
+                                onClick={() => {
+                                  setgPay(!gPay);
+                                  setpPay(false);
+                                }}
+                                className='flex justify-between items-center'>
+                                <div className='flex items-center gap-2'>
+                                  <div className='w-6 h-6'>
+                                    <Image
+                                      src='https://payments-s3.oyorooms.io/assets/images/ic_gpay.png'
+                                      width={96}
+                                      height={96}
+                                      alt=''
+                                      className='w-full h-full'
+                                    />
+                                  </div>
+                                  <p className='text-sm font-medium'>
+                                    Google Pay
+                                  </p>
+                                </div>
+                                <span className='text-lg opacity-70'>
+                                  {gPay ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                                </span>
+                              </div>
+                              {gPay && (
+                                <div className='gPay py-3'>
+                                  <input
+                                    type='text'
+                                    placeholder='Enter mobile number'
+                                    className='w-full outline-none text-sm px-[15px] py-[10px] border border-[#cccccc] rounded-md'
+                                  />
+                                  <button className='w-full text-sm font-semibold rounded-md py-3 my-3 bg-[#f2f2f2] text-[#0000004d]'>
+                                    Pay Now ₹1386
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <div className='px-3'>
+                            <div className='py-3 cursor-pointer'>
+                              <div
+                                onClick={() => {
+                                  setpPay(!pPay);
+                                  setgPay(false);
+                                }}
+                                className='flex justify-between items-center'>
+                                <div className='flex items-center gap-2'>
+                                  <div className='w-6 h-6'>
+                                    <Image
+                                      src='https://payments-s3.oyorooms.io/assets/images/offers/UPIicons.png'
+                                      width={96}
+                                      height={96}
+                                      alt=''
+                                      className='w-full h-full'
+                                    />
+                                  </div>
+                                  <p className='text-sm font-medium'>
+                                    PhonePe/Paytm/BHIM/UPI
+                                  </p>
+                                </div>
+                                <span className='text-lg opacity-70'>
+                                  {pPay ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                                </span>
+                              </div>
+                              {pPay && (
+                                <div className='gPay py-3'>
+                                  <input
+                                    type='text'
+                                    placeholder='upild@upiprovider'
+                                    className='w-full outline-none text-sm px-[15px] py-[10px] border border-[#cccccc] rounded-md'
+                                  />
+                                  <div className='mt-3 flex items-center justify-between'>
+                                    <p className='text-[13px]'>
+                                      Save this payment method for future
+                                    </p>
+                                    <input type='checkbox' className='toggle' />
+                                  </div>
+                                  <button className='w-full text-sm font-semibold rounded-md py-3 my-3 bg-[#f2f2f2] text-[#0000004d]'>
+                                    Pay Now ₹1386
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      {activeTab === 3 && (
+                        <div className="className='pl-4 !h-[400px] overflow-x-hidden overflow-y-scroll relative'">
+                          <div>
+                            {bankShow
+                              ? banks.map((bank, idx) => (
+                                  <div
+                                    key={idx}
+                                    className='flex items-center justify-between pr-3 border-b border-[#f0f0f0] min-h-12 cursor-pointer'>
+                                    <div className='flex gap-4 items-center'>
+                                      <span>
+                                        <CiBank className='text-2xl' />
+                                      </span>
+                                      <p className='text-sm'>{bank}</p>
+                                    </div>
+                                    <span>
+                                      <IoIosArrowForward className='text-xs' />
+                                    </span>
+                                  </div>
+                                ))
+                              : banks.slice(0, 5).map((bank, idx) => (
+                                  <div
+                                    key={idx}
+                                    className='flex items-center justify-between pr-3 border-b border-[#f0f0f0] min-h-12 cursor-pointer'>
+                                    <div className='flex gap-4 items-center'>
+                                      <span>
+                                        <CiBank className='text-2xl' />
+                                      </span>
+                                      <p className='text-sm'>{bank}</p>
+                                    </div>
+                                    <span>
+                                      <IoIosArrowForward className='text-xs' />
+                                    </span>
+                                  </div>
+                                ))}
+                          </div>
+                          {bankShow === false && (
+                            <p
+                              onClick={() => setBankShow(true)}
+                              className='min-h-12 border-b border-[#f0f0f0] flex items-center cursor-pointer font-semibold text-sm ml-10'>
+                              Show More
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
