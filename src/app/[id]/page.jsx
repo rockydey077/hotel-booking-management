@@ -20,11 +20,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaRegShareSquare } from "react-icons/fa";
 import ImageSlider from "@/utilities/ImageSlider";
 import { TiTick } from "react-icons/ti";
-import { MdOutlineStar } from "react-icons/md";
 import { AiFillThunderbolt } from "react-icons/ai";
-import styles from "./styles.module.css";
-import { CiLocationOn, CiSearch } from "react-icons/ci";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./style.css";
 import { ImCross } from "react-icons/im";
@@ -34,6 +30,7 @@ import RoomDetails from "@/components/RoomDetails/RoomDetails";
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
   const [activeTab, setActiveTab] = useState("tab1");
+  const [close, setClose] = useState(false);
 
   useEffect(() => {
     fetch("rooms.json")
@@ -63,7 +60,7 @@ const DetailsPage = ({ params }) => {
           slidesPerView={1}
           centeredSlides={false}
           slidesPerGroupSkip={1}
-          loop={true}
+          // loop={true}
           grabCursor={true}
           navigation={true}
           keyboard={{
@@ -334,7 +331,8 @@ const DetailsPage = ({ params }) => {
               </div>
               <div className='flex justify-between items-center font-medium shadow p-4 mt-3'>
                 <p className='flex items-center gap-1 text-sm font-medium'>
-                  <MdOutlineDoorFront className='text-color8 text-2xl' /> Classic
+                  <MdOutlineDoorFront className='text-color8 text-2xl' />{" "}
+                  Classic
                 </p>
                 <p>
                   <FaPencilAlt className='text-color2' />
@@ -358,6 +356,7 @@ const DetailsPage = ({ params }) => {
                       <div className='drawer-content'>
                         {/* Page content here */}
                         <label
+                          onClick={() => setClose(true)}
                           htmlFor='my-drawer-4'
                           className='bg-[#EFFCF5] font-semibold text-color6 rounded-sm cursor-pointer p-1 inline-block mt-2 ml-8 text-xs border border-[#97E1BB]'>
                           MORE OFFERS
@@ -365,10 +364,11 @@ const DetailsPage = ({ params }) => {
                       </div>
                       <div className='drawer-side'>
                         <label
+                          onClick={() => setClose(false)}
                           htmlFor='my-drawer-4'
                           aria-label='close sidebar'
-                          className='drawer-overlay text-transparent text-xl pt-5 pl-[880px]'>
-                          <ImCross />
+                          className='drawer-overlay cursor-default text-color4 text-xl pt-5 pl-[880px]'>
+                          {close && <ImCross className='cursor-pointer' />}
                         </label>
                         <ul className='menu bg-color4 text-base-content min-h-full w-[40%] p-10'>
                           {/* Sidebar content here */}

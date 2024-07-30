@@ -49,6 +49,10 @@ html {
   transform: rotate(180deg);
 }
 
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
+  display: none !important;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
   margin: 0px 15px;
