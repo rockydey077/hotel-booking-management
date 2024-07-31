@@ -95,7 +95,7 @@ const RoomDetails = ({ room }) => {
               <div>
                 <Image
                   className='rounded'
-                  src={room?.categories?.room[0]}
+                  src={room?.categories?.bedroom[0]}
                   alt={room.name_type}
                   width={200}
                   height={200}
@@ -222,7 +222,7 @@ const RoomDetails = ({ room }) => {
             <div>
               <Image
                 className='rounded'
-                src={room?.categories?.room[1]}
+                src={room?.categories?.bedroom[1]}
                 alt=''
                 width={150}
                 height={100}

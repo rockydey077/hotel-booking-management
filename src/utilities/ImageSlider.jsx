@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -9,16 +9,52 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import styles from "./styles.module.css";
 
-const ImageSlider = ({ room }) => {
+const ImageSlider = ({ room, categories }) => {
+  const [currentImages, setCurrentImages] = useState(categories["bedroom"]);
+  const [reverse, setReverse] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeCategory, setActiveCategory] = useState("room");
 
+  const handlePrevClick = (swiper) => {
+    setReverse(true);
+    // console.log(swiper.slides.length, swiper.realIndex);
+    if (swiper.slides.length === 5) {
+      setActiveCategory("room");
+      if (parseInt(swiper.realIndex) === 0) {
+        setCurrentImages(categories["washroom"]);
+      }
+    } else {
+      setActiveCategory("washroom");
+      if (parseInt(swiper.realIndex) === 0) {
+        setCurrentImages(categories["bedroom"]);
+      }
+    }
+  };
+
+  const handleNextClick = (swiper) => {
+    setReverse(false);
+    // console.log(swiper);
+    if (swiper.slides.length === 5) {
+      setActiveCategory("room");
+      if (parseInt(swiper.activeIndex) === 4) {
+        setCurrentImages(categories["washroom"]);
+      }
+    } else {
+      setActiveCategory("washroom");
+      if (parseInt(swiper.realIndex) === 2) {
+        setCurrentImages(categories["bedroom"]);
+      }
+    }
+  };
+
   const handleRoom = () => {
     setActiveCategory("room");
+    setCurrentImages(categories["bedroom"]);
   };
 
   const handleWashroom = () => {
     setActiveCategory("washroom");
+    setCurrentImages(categories["washroom"]);
   };
 
   return (
@@ -31,7 +67,7 @@ const ImageSlider = ({ room }) => {
             className={`${
               activeCategory === "room" && "border-b-2 border-color4"
             } tab cursor-pointer text-color4 text-lg `}>
-            Room ({room?.categories?.room.length})
+            Room ({room?.categories?.bedroom.length})
           </a>
           <a
             onClick={handleWashroom}
@@ -46,34 +82,36 @@ const ImageSlider = ({ room }) => {
       <div className=''>
         <div className='max-w-screen-xl mx-auto'>
           <Swiper
-            style={{
-              "--swiper-navigation-color": "#2ECA7F",
-              "--swiper-pagination-color": "#2ECA7F",
+            thumbs={{ swiper: thumbsSwiper }}
+            onSwiper={(swiper) => {
+              // Custom navigation buttons
+              swiper.navigation.nextEl.onclick = () => handleNextClick(swiper);
+              swiper.navigation.prevEl.onclick = () => handlePrevClick(swiper);
             }}
+            navigation
             loop={true}
             spaceBetween={10}
-            navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
-            className='mySwiper2 mb-10'>
-            {activeCategory === "room"
-              ? room?.categories?.room?.map((img, idx) => (
-                  <SwiperSlide key={idx} className=''>
+            className='mySwiper2 mb-10' // Disable Swiper's loop, we'll handle it manually
+          >
+            {reverse
+              ? currentImages.reverse().map((src, index) => (
+                  <SwiperSlide key={index} className=''>
                     <Image
-                      src={img}
+                      src={src}
                       className='block mx-auto'
-                      alt={room.room_name}
+                      alt={`Image ${index + 1}`}
                       width={620}
                       height={280}
                     />
                   </SwiperSlide>
                 ))
-              : room?.categories?.washroom?.map((img, idx) => (
-                  <SwiperSlide key={idx} className=''>
+              : currentImages.map((src, index) => (
+                  <SwiperSlide key={index} className=''>
                     <Image
-                      src={img}
+                      src={src}
                       className='block mx-auto'
-                      alt={room.room_name}
+                      alt={`Image ${index + 1}`}
                       width={620}
                       height={280}
                     />

@@ -651,7 +651,7 @@ const DetailsPage = ({ params }) => {
                 ✕
               </button>
             </form>
-            <ImageSlider room={room} />
+            {Object.keys(room).length !== 0 && <ImageSlider room={room} categories={room.categories} />}
           </div>
         </div>
       </dialog>
