@@ -2,15 +2,18 @@
 import React, { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const Facilities = () => {
-  const [facility, setFacility] = useState([]);
+const Facilities = ({ fcFilters, setFcFilters, fcFilterList, setClear }) => {
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    fetch("facilities.json")
-      .then((res) => res.json())
-      .then((data) => setFacility(data));
-  }, []);
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setFcFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
+    setClear(true);
+  };
+
   return (
     <div>
       <h3 className='text-sm font-bold text-[#222] mb-4'>Home Facilities</h3>
@@ -18,22 +21,34 @@ const Facilities = () => {
         style={{ display: "flex", flexDirection: "column", gap: "10px" }}
         className=''>
         {show
-          ? facility.map((f, index) => (
-              <div key={index} className='form-control'>
+          ? fcFilterList.map((filter) => (
+              <div key={filter.id} className='form-control'>
                 <label className='label justify-start gap-2'>
-                  <input type='checkbox' className='checkbox' />
+                  <input
+                    name={filter.id}
+                    checked={fcFilters[filter.id] || false}
+                    onChange={handleCheckboxChange}
+                    type='checkbox'
+                    className='checkbox'
+                  />
                   <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                    {f}
+                    {filter.label}
                   </span>
                 </label>
               </div>
             ))
-          : facility.slice(0, 5).map((f, index) => (
-              <div key={index} className='form-control'>
+          : fcFilterList.slice(0, 5).map((filter) => (
+              <div key={filter.id} className='form-control'>
                 <label className='label justify-start gap-2'>
-                  <input type='checkbox' className='checkbox' />
+                  <input
+                    name={filter.id}
+                    checked={fcFilters[filter.id] || false}
+                    onChange={handleCheckboxChange}
+                    type='checkbox'
+                    className='checkbox'
+                  />
                   <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                    {f}
+                    {filter.label}
                   </span>
                 </label>
               </div>

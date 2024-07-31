@@ -6,17 +6,31 @@ import FilterResult from "@/utilities/FilterResult";
 import React, { useEffect, useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 
+const features = [{ id: "payHotel", label: "Pay at Hotel" }];
+
 const FilterSide = () => {
   const [clear, setClear] = useState(false);
   const [values, setValues] = useState([395, 2605]);
   const [cFilters, setCFilters] = useState({});
   const [cFilterList, setCFilterList] = useState([]);
+  const [fcFilters, setFcFilters] = useState({});
+  const [fcFilterList, setFcFilterList] = useState([]);
+  const [acFilters, setAcFilters] = useState({});
+  const [acFilterList, setAcFilterList] = useState([]);
   const [cateFilters, setCateFilters] = useState({});
   const [cateFilterList, setCateFilterList] = useState([]);
+  const [payFilters, setPayFilters] = useState({});
   const MIN = 0;
   const MAX = 3000;
 
-  console.log(cFilters, cFilterList);
+  useEffect(() => {
+    setPayFilters(
+      features.reduce((acc, filter) => {
+        acc[filter.id] = false;
+        return acc;
+      }, {})
+    );
+  }, []);
 
   useEffect(() => {
     fetch("collections.json")
@@ -44,6 +58,50 @@ const FilterSide = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("facilities.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const initialFilters = data.reduce((acc, filter) => {
+          acc[filter.id] = false;
+          return acc;
+        }, {});
+        setFcFilters(initialFilters);
+        setFcFilterList(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("accomodation.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const initialFilters = data.reduce((acc, filter) => {
+          acc[filter.id] = false;
+          return acc;
+        }, {});
+        setAcFilters(initialFilters);
+        setAcFilterList(data);
+      });
+  }, []);
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setAcFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
+    setClear(true);
+  };
+
+  const handleChange = (event) => {
+    const { name, checked } = event.target;
+    setPayFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
+    setClear(true);
+  };
+
   const handleClearAll = () => {
     const clearedFilters = cFilterList.reduce((acc, filter) => {
       acc[filter.id] = false;
@@ -53,6 +111,27 @@ const FilterSide = () => {
 
     setCateFilters(
       cateFilterList.reduce((acc, filter) => {
+        acc[filter.id] = false;
+        return acc;
+      }, {})
+    );
+
+    setFcFilters(
+      fcFilterList.reduce((acc, filter) => {
+        acc[filter.id] = false;
+        return acc;
+      }, {})
+    );
+
+    setAcFilters(
+      acFilterList.reduce((acc, filter) => {
+        acc[filter.id] = false;
+        return acc;
+      }, {})
+    );
+
+    setPayFilters(
+      features.reduce((acc, filter) => {
         acc[filter.id] = false;
         return acc;
       }, {})
@@ -192,62 +271,55 @@ const FilterSide = () => {
           Accomodation Type
         </h3>
         <div className='space-y-[10px]'>
-          <div className='form-control'>
-            <label
-              onClick={() => {
-                setClear(true);
-              }}
-              className='label justify-start gap-2'>
-              <input type='checkbox' className='checkbox' />
-              <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                Resort
-              </span>
-            </label>
-          </div>
-          <div className='form-control'>
-            <label
-              onClick={() => {
-                setClear(true);
-              }}
-              className='label justify-start gap-2'>
-              <input type='checkbox' className='checkbox' />
-              <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                OYO Home
-              </span>
-            </label>
-          </div>
-          <div className='form-control'>
-            <label
-              onClick={() => {
-                setClear(true);
-              }}
-              className='label justify-start gap-2'>
-              <input type='checkbox' className='checkbox' />
-              <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-                Hotel
-              </span>
-            </label>
-          </div>
+          {acFilterList.map((filter) => (
+            <div key={filter.id} className='form-control'>
+              <label className='label justify-start gap-2'>
+                <input
+                  name={filter.id}
+                  checked={acFilters[filter.id] || false}
+                  onChange={handleCheckboxChange}
+                  type='checkbox'
+                  className='checkbox'
+                />
+                <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+                  {filter.label}
+                </span>
+              </label>
+            </div>
+          ))}
         </div>
       </div>
       <div className='my-6 border-b border-color8'></div>
       <div>
-        <Facilities />
+        <Facilities
+          fcFilters={fcFilters}
+          setFcFilters={setFcFilters}
+          fcFilterList={fcFilterList}
+          setClear={setClear}
+        />
       </div>
       <div className='my-6 border-b border-color8'></div>
       <div className='pb-6'>
-        <h3 className='text-sm font-bold text-[#222] mb-4'>Home Facilities</h3>
+        <h3 className='text-sm font-bold text-[#222] mb-4'>
+          Check-in features
+        </h3>
         <div className='form-control'>
-          <label
-            onClick={() => {
-              setClear(true);
-            }}
-            className='label justify-start gap-2'>
-            <input type='checkbox' className='checkbox' />
-            <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
-              Pay at Hotel
-            </span>
-          </label>
+          {features.map((filter) => (
+            <div key={filter.id} className='form-control'>
+              <label className='label justify-start gap-2'>
+                <input
+                  name={filter.id}
+                  checked={payFilters[filter.id] || false}
+                  onChange={handleChange}
+                  type='checkbox'
+                  className='checkbox'
+                />
+                <span className='label-text text-sm font-normal text-[#222] cursor-pointer'>
+                  {filter.label}
+                </span>
+              </label>
+            </div>
+          ))}
         </div>
       </div>
     </div>

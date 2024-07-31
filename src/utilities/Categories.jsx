@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 const Categories = ({
@@ -19,11 +19,6 @@ const Categories = ({
     setClear(true);
   };
 
-  useEffect(() => {
-    fetch("categories.json")
-      .then((res) => res.json())
-      .then((data) => setCategory(data));
-  }, []);
   return (
     <div>
       <h3 className='text-sm font-bold text-[#222] mb-4'>Categories</h3>
