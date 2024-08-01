@@ -105,7 +105,7 @@ const ImageSliderPro = ({ room }) => {
             ))}
           </Swiper>
         </div>
-        <div className='max-w-screen-xl mx-auto'>
+        <div className='max-w-screen-xl mx-auto swiper-2'>
           <Swiper
             loop={true}
             onSwiper={(swiper) => {
