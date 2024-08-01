@@ -26,6 +26,7 @@ import "./style.css";
 import { ImCross } from "react-icons/im";
 import Nearby from "@/components/Nearby/Nearby";
 import RoomDetails from "@/components/RoomDetails/RoomDetails";
+import ImageSliderPro from "@/utilities/ImageSliderPro";
 
 const DetailsPage = ({ params }) => {
   const [room, setRoom] = useState({});
@@ -651,7 +652,8 @@ const DetailsPage = ({ params }) => {
                 ✕
               </button>
             </form>
-            {Object.keys(room).length !== 0 && <ImageSlider room={room} categories={room.categories} />}
+            {/* {Object.keys(room).length !== 0 && <ImageSlider room={room} categories={room.categories} />} */}
+            {Object.keys(room).length !== 0 && <ImageSliderPro room={room}  />}
           </div>
         </div>
       </dialog>

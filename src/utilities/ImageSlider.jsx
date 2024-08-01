@@ -66,7 +66,7 @@ const ImageSlider = ({ room, categories }) => {
             role='tab'
             className={`${
               activeCategory === "room" && "border-b-2 border-color4"
-            } tab cursor-pointer text-color4 text-lg `}>
+            } tab cursor-pointer text-color4 text-lg`}>
             Room ({room?.categories?.bedroom.length})
           </a>
           <a
