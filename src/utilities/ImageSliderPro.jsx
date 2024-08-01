@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -7,51 +7,50 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
+import "./ImageSliderPro.css";
 
 const ImageSliderPro = ({ room }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const images = room.image;
-  const [start, setStart] = useState(0);
-  const [end, setEnd] = useState(images.length);
+  const { images } = room;
+  const [imageShow, setImageShow] = useState(images);
   const [activeCategory, setActiveCategory] = useState("room");
-  console.log(activeCategory);
-
-  const handleSlideChange = (swiper) => {
-    console.log(swiper);
-    if (swiper.realIndex === 7 && swiper.previousRealIndex === 0) {
-      setActiveCategory("washroom");
-    }
-    if (swiper.realIndex === 0 && swiper.previousRealIndex === 7) {
-      setActiveCategory("room");
-    }
-    if (swiper.realIndex === 4 && swiper.previousRealIndex === 5) {
-      setActiveCategory("room");
-    }
-    if (swiper.realIndex === 5 && swiper.previousRealIndex === 4) {
-      setActiveCategory("washroom");
-    }
-    if (swiper.realIndex === 0 && swiper.previousRealIndex === 2) {
-      setStart(0);
-      setEnd(images.length);
-      setActiveCategory("room");
-    }
-    if (swiper.realIndex === 0 && swiper.previousRealIndex === 4) {
-      setStart(5);
-      setEnd(images.length);
-      setActiveCategory("washroom");
-    }
-  };
+  const roomLength = images?.filter((img) => img.category === "bedroom").length;
+  const washroomLength = images?.filter(
+    (img) => img.category === "washroom"
+  ).length;
+  console.log(imageShow);
+  const swiperRef = useRef(null);
+  const swiperRef2 = useRef(null);
 
   const handleRoom = () => {
-    setStart(0);
-    setEnd(5);
-    setActiveCategory("room");
+    const roomImage = imageShow.filter((image) => image.category === "bedroom");
+    const washroomImage = imageShow.filter(
+      (image) => image.category === "washroom"
+    );
+    const allImage = [...roomImage, ...washroomImage];
+    setImageShow(allImage);
+    swiperRef.current.slideTo(0, 0);
+    swiperRef2.current.slideTo(0, 0);
   };
 
   const handleWashroom = () => {
-    setStart(5);
-    setEnd(images.length);
-    setActiveCategory("washroom");
+    const washroomImage = imageShow.filter(
+      (image) => image.category === "washroom"
+    );
+    const roomImage = imageShow.filter((image) => image.category === "bedroom");
+    const allImage = [...washroomImage, ...roomImage];
+    setImageShow(allImage);
+    swiperRef.current.slideTo(0, 0);
+    swiperRef2.current.slideTo(0, 0);
+  };
+
+  const handleSlideChange = (swiper) => {
+    const image = imageShow[swiper.realIndex];
+    if (image.category === "bedroom") {
+      setActiveCategory("room");
+    } else {
+      setActiveCategory("washroom");
+    }
   };
 
   return (
@@ -59,20 +58,26 @@ const ImageSliderPro = ({ room }) => {
       <div className='mb-10 max-w-screen-xl mx-auto '>
         <div role='tablist' className='font-semibold'>
           <a
-            onClick={handleRoom}
+            onClick={() => {
+              setActiveCategory("room");
+              handleRoom();
+            }}
             role='tab'
             className={`${
               activeCategory === "room" && "border-b-2 border-color4"
             } tab cursor-pointer text-color4 text-lg `}>
-            Room ({room?.categories?.bedroom.length})
+            Room ({roomLength})
           </a>
           <a
-            onClick={handleWashroom}
+            onClick={() => {
+              setActiveCategory("washroom");
+              handleWashroom();
+            }}
             role='tab'
             className={`${
               activeCategory === "washroom" && "border-b-2 border-color4"
             } tab inline-block ml-5 cursor-pointer text-color4 text-lg`}>
-            Washroom ({room?.categories?.washroom.length})
+            Washroom ({washroomLength})
           </a>
         </div>
       </div>
@@ -80,16 +85,17 @@ const ImageSliderPro = ({ room }) => {
         <div className='max-w-screen-xl mx-auto'>
           <Swiper
             spaceBetween={10}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => handleSlideChange(swiper)}
-            navigation
+            navigation={true}
             loop={true}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
-            className='mySwiper2 mb-10'>
-            {images.slice(start, end).map((src, index) => (
+            className='mySwiper mb-10'>
+            {imageShow.map((src, index) => (
               <SwiperSlide key={index} className=''>
                 <Image
-                  src={src}
+                  src={src?.url}
                   className='block mx-auto'
                   alt={`Image ${index + 1}`}
                   width={620}
@@ -101,19 +107,23 @@ const ImageSliderPro = ({ room }) => {
         </div>
         <div className='max-w-screen-xl mx-auto'>
           <Swiper
-            onSwiper={setThumbsSwiper}
             loop={true}
+            onSwiper={(swiper) => {
+              setThumbsSwiper(swiper);
+              swiperRef2.current = swiper;
+            }}
             spaceBetween={0}
             slidesPerView={6}
             freeMode={true}
             navigation={true}
+            observeParents={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className='mySwiper'>
-            {images.map((src, index) => (
+            className='mySwiper2'>
+            {imageShow.map((src, index) => (
               <SwiperSlide key={index} className=''>
                 <Image
-                  src={src}
+                  src={src?.url}
                   className='block mx-auto'
                   alt={`Image ${index + 1}`}
                   width={220}

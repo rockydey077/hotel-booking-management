@@ -95,7 +95,7 @@ const RoomDetails = ({ room }) => {
               <div>
                 <Image
                   className='rounded'
-                  src={room?.categories?.bedroom[0]}
+                  src={room?.image[0]}
                   alt={room.name_type}
                   width={200}
                   height={200}
@@ -120,7 +120,7 @@ const RoomDetails = ({ room }) => {
         </div>
       </div>
       {/* Ratings */}
-      <div id="review">
+      <div id='review'>
         <h2 className='text-[22px] font-bold mb-5'>Ratings and reviews</h2>
         <div className='shadow rounded border border-color9 flex items-center'>
           <div className='flex justify-center lg:w-2/5 items-center'>
@@ -222,7 +222,7 @@ const RoomDetails = ({ room }) => {
             <div>
               <Image
                 className='rounded'
-                src={room?.categories?.bedroom[1]}
+                src={room?.image[0]}
                 alt=''
                 width={150}
                 height={100}
@@ -257,7 +257,7 @@ const RoomDetails = ({ room }) => {
             <div>
               <Image
                 className='rounded'
-                src={room?.categories?.washroom[0]}
+                src={room?.image[5]}
                 alt=''
                 width={150}
                 height={100}

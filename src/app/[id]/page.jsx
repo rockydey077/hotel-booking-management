@@ -114,7 +114,7 @@ const DetailsPage = ({ params }) => {
       <div className='max-w-screen-xl flex gap-20 mx-auto mt-8 mb-16'>
         {/* Room Details */}
         <div className='lg:w-3/5'>
-          <RoomDetails room={room} />
+          {Object.keys(room).length !== 0 && <RoomDetails room={room} />}
           {/* What's nearby */}
           {/* <div className='my-5'>
             <h2 className='text-2xl font-bold'>What's nearby?</h2>
@@ -653,7 +653,7 @@ const DetailsPage = ({ params }) => {
               </button>
             </form>
             {/* {Object.keys(room).length !== 0 && <ImageSlider room={room} categories={room.categories} />} */}
-            {Object.keys(room).length !== 0 && <ImageSliderPro room={room}  />}
+            {Object.keys(room).length !== 0 && <ImageSliderPro room={room} />}
           </div>
         </div>
       </dialog>
