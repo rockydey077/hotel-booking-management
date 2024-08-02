@@ -5,6 +5,7 @@ import styles from "./pdfStyle.module.css";
 import html2canvas from "html2canvas-pro";
 import jsPDF from "jspdf";
 import Modal from "react-modal";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const customStyles = {
   content: {
@@ -23,6 +24,8 @@ const HtmlToPdf = () => {
   const contentRef = useRef();
   const [pdfUrl, setPdfUrl] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [expend, setExpend] = useState(false);
+  const [expend2, setExpend2] = useState(false);
 
   function afterOpenModal() {
     // subtitle.style.color = "#f00";
@@ -42,6 +45,7 @@ const HtmlToPdf = () => {
 
       const pdfUrl = URL.createObjectURL(pdfBlob);
       setIsOpen(true);
+      setExpend(true);
       setPdfUrl(pdfUrl);
     });
   };
@@ -159,6 +163,84 @@ const HtmlToPdf = () => {
               </div>
             )}
           </Modal>
+        </div>
+        <div className='border border-[#d6d6d6] my-6'></div>
+        <div className='text-[#222]'>
+          <div>
+            <h3 className='text-lg font-bold mb-6'>Payment Details</h3>
+          </div>
+          <div className=''>
+            <div
+              onClick={() => {
+                setExpend(!expend);
+                setExpend2(false);
+              }}
+              className='cursor-pointer border border-color8 px-4 py-[10px] flex items-center justify-between'>
+              <div>
+                <p className='text-base'>Total payable amount</p>
+              </div>
+              <div className='flex items-center gap-3'>
+                <h5 className='text-base font-bold'>₹1670</h5>
+                {expend ? (
+                  <IoIosArrowUp className='text-sm' />
+                ) : (
+                  <IoIosArrowDown className='text-sm' />
+                )}
+              </div>
+            </div>
+            {expend && (
+              <div>
+                <div className='border-l border-r border-color8 px-4 py-[10px] flex items-center justify-between'>
+                  <div>
+                    <p className='text-sm'>Room charges for</p>
+                  </div>
+                  <div>
+                    <p className='text-sm'>1 Room x 1 Night</p>
+                  </div>
+                  <div>
+                    <h5 className='text-base font-bold'>₹3340</h5>
+                  </div>
+                </div>
+                <div
+                  onClick={() => setExpend2(!expend2)}
+                  className={`border cursor-pointer border-color8 px-4 py-[10px] ${
+                    expend2 && "space-y-5"
+                  }`}>
+                  <div className='flex items-center justify-between'>
+                    <div className='flex items-center gap-3'>
+                      <p className='text-sm'>Discounts</p>
+                      {expend2 ? (
+                        <IoIosArrowUp className='text-sm' />
+                      ) : (
+                        <IoIosArrowDown className='text-sm' />
+                      )}
+                    </div>
+                    <div>
+                      <h5 className='text-base font-bold'>-₹1670</h5>
+                    </div>
+                  </div>
+                  {expend2 && (
+                    <div className='flex items-center justify-between text-[#00000080]'>
+                      <div>
+                        <p className='text-sm'>Coupon: OYOFESTIVE50</p>
+                      </div>
+                      <div>
+                        <h5 className='text-base font-bold'>-₹1670</h5>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className='text-[#222] border-l border-r border-b border-color8 px-4 py-[10px] flex items-center justify-between'>
+                  <div>
+                    <p className='text-base font-bold'>Total payable amount</p>
+                  </div>
+                  <div>
+                    <h5 className='text-[32px] font-bold'>₹1670</h5>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
