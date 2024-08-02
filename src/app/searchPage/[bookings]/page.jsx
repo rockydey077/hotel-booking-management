@@ -652,8 +652,8 @@ const BookingPage = ({ params }) => {
                         <div
                           className={`${
                             file.length > 3 &&
-                            "overflow-x-hidden overflow-y-scroll bg-color9 rounded shadow"
-                          } h-28`}>
+                            "overflow-x-hidden overflow-y-scroll"
+                          } h-28 bg-color7 rounded shadow`}>
                           {file.length > 0 ? (
                             <div className='flex flex-wrap gap-3 p-3'>
                               {file.map((item, index) => {
