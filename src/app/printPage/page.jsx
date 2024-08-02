@@ -25,8 +25,8 @@ const customStyles = {
 const PrintPage = () => {
   const contentRef = useRef();
   const [pdfUrl, setPdfUrl] = useState("");
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [expend, setExpend] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [expend, setExpend] = useState(true);
   const [expend2, setExpend2] = useState(false);
 
   function afterOpenModal() {
@@ -46,7 +46,7 @@ const PrintPage = () => {
       const pdfBlob = pdf.output("blob");
 
       const pdfUrl = URL.createObjectURL(pdfBlob);
-      setIsOpen(true);
+      setModalIsOpen(true);
       setPdfUrl(pdfUrl);
     });
   };
@@ -62,7 +62,6 @@ const PrintPage = () => {
         </p>
         <button
           onClick={() => {
-            setExpend(true);
             handlePrint();
           }}
           className='mt-8 text-base font-bold border-2 border-[#222] rounded-sm px-16 py-2'>
@@ -306,7 +305,7 @@ const PrintPage = () => {
               </a>
               <button
                 className='border font-medium cursor-pointer border-[#047db7] text-[#a8c7fa] px-5 py-2 rounded-full'
-                onClick={() => setIsOpen(false)}>
+                onClick={() => setModalIsOpen(false)}>
                 Cancel
               </button>
             </div>

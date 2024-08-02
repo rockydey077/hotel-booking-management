@@ -618,11 +618,25 @@ const BookingPage = ({ params }) => {
                           </label>
                           <input
                             type='file'
+                            id='file'
                             // disabled={file.length === 5}
                             className='mb-3'
                             onChange={handleChange}
                             multiple
+                            style={{ display: "none" }}
                           />
+                          <label
+                            htmlFor='file'
+                            className='cursor-pointer border mb-2 mr-2 border-[#ccc] text-color5 bg-color8 py-1 px-2 inline-block'>
+                            Choose File
+                          </label>
+                          <span>
+                            {file.length > 0
+                              ? file.length > 1
+                                ? `${file.length} Files Choose`
+                                : `${file.length} File Choose`
+                              : "No File Choose"}
+                          </span>
 
                           <div
                             className={`${
