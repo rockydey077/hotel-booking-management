@@ -637,46 +637,50 @@ const BookingPage = ({ params }) => {
                           </div>
                         </div>
                       </div>
-                      <div>
-                        {/* <div
-                          class='custom-file-container'
-                          data-upload-id='myUniqueUploadId'></div> */}
-
+                      <div className=''>
                         <label className='block text-base font-semibold mb-[9px]'>
                           Upload
                         </label>
                         <input
                           type='file'
-                          disabled={file.length === 5}
+                          // disabled={file.length === 5}
                           className='mb-[19px]'
                           onChange={handleChange}
                           multiple
                         />
 
-                        <div className='flex flex-wrap gap-3'>
+                        <div
+                          className={`${
+                            file.length > 3 &&
+                            "h-32 overflow-x-hidden overflow-y-scroll bg-color9 rounded shadow"
+                          } `}>
                           {file.length > 0 ? (
-                            file.map((item, index) => {
-                              return (
-                                <div key={index} className='relative w-fit'>
-                                  <Image
-                                    className='w-20 rounded'
-                                    width={200}
-                                    height={200}
-                                    alt=''
-                                    src={URL.createObjectURL(item)}
-                                  />
-                                  <button
-                                    onClick={() => deleteFile(index)}
-                                    type='button'
-                                    className='absolute -top-2 -left-2 shadow-md bg-color7 text-color5 rounded-full'>
-                                    <RxCrossCircled className='text-lg' />
-                                  </button>
-                                </div>
-                              );
-                            })
+                            <div className='flex flex-wrap gap-3 p-3'>
+                              {file.map((item, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className='relative w-fit h-fit'>
+                                    <Image
+                                      className='w-[73px] rounded'
+                                      width={200}
+                                      height={200}
+                                      alt=''
+                                      src={URL.createObjectURL(item)}
+                                    />
+                                    <button
+                                      onClick={() => deleteFile(index)}
+                                      type='button'
+                                      className='absolute -top-2 -left-2 shadow-md bg-color7 text-color5 rounded-full'>
+                                      <RxCrossCircled className='text-lg' />
+                                    </button>
+                                  </div>
+                                );
+                              })}
+                            </div>
                           ) : (
                             <Image
-                              className='h-28 rounded'
+                              className='h-28 w-full rounded'
                               width={200}
                               height={200}
                               alt=''
