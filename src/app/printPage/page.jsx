@@ -2,54 +2,19 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 import styles from "./printStyle.module.css";
-import html2canvas from "html2canvas-pro";
-import jsPDF from "jspdf";
-import Modal from "react-modal";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import "./pdfStyle.css";
 import OYOBanner from "../../../public/assets/OYO-banner.jpg";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "1080px",
-    padding: "0px",
-  },
-};
+import { useReactToPrint } from "react-to-print";
 
 const PrintPage = () => {
   const contentRef = useRef();
-  const [pdfUrl, setPdfUrl] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [expend, setExpend] = useState(true);
   const [expend2, setExpend2] = useState(false);
 
-  function afterOpenModal() {
-    // subtitle.style.color = "#f00";
-  }
-
-  const handlePrint = () => {
-    const content = contentRef.current;
-
-    html2canvas(content, { useCORS: true }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      const pdfBlob = pdf.output("blob");
-
-      const pdfUrl = URL.createObjectURL(pdfBlob);
-      setModalIsOpen(true);
-      setPdfUrl(pdfUrl);
-    });
-  };
+  const handlePrint = useReactToPrint({
+    content: () => contentRef.current,
+  });
 
   return (
     <div className='max-w-screen-xl mx-auto pt-16'>
@@ -61,14 +26,12 @@ const PrintPage = () => {
           You will soon receive an email confirmation on rocky@dey.com
         </p>
         <button
-          onClick={() => {
-            handlePrint();
-          }}
+          onClick={handlePrint}
           className='mt-8 text-base font-bold border-2 border-[#222] rounded-sm px-16 py-2'>
           Print
         </button>
       </div>
-      <div className={`${styles.print_div}`}>
+      <div className={styles.print_div}>
         <div ref={contentRef} className='pt-[26px] px-[32px]'>
           <div className='text-[#222] flex justify-between'>
             <div>
@@ -161,7 +124,7 @@ const PrintPage = () => {
             <div>
               <h3 className='text-lg font-bold mb-6'>Payment Details</h3>
             </div>
-            <div className=''>
+            <div>
               <div
                 onClick={() => {
                   setExpend(!expend);
@@ -182,54 +145,62 @@ const PrintPage = () => {
               </div>
               {expend && (
                 <div>
-                  <div className='border-l border-r border-color8 px-4 py-[10px] flex items-center justify-between'>
-                    <div>
-                      <p className='text-sm'>Room charges for</p>
-                    </div>
-                    <div>
-                      <p className='text-sm'>1 Room x 1 Night</p>
-                    </div>
-                    <div>
-                      <h5 className='text-base font-bold'>₹3340</h5>
-                    </div>
-                  </div>
-                  <div
-                    onClick={() => setExpend2(!expend2)}
-                    className={`border cursor-pointer border-color8 px-4 py-[10px] ${
-                      expend2 && "space-y-5"
-                    }`}>
+                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
                     <div className='flex items-center justify-between'>
-                      <div className='flex items-center gap-3'>
-                        <p className='text-sm'>Discounts</p>
-                        {expend2 ? (
-                          <IoIosArrowUp className='text-sm' />
-                        ) : (
-                          <IoIosArrowDown className='text-sm' />
-                        )}
-                      </div>
-                      <div>
-                        <h5 className='text-base font-bold'>-₹1670</h5>
-                      </div>
+                      <p className='text-sm'>Original price</p>
+                      <p className='text-sm'>₹2740</p>
                     </div>
-                    {expend2 && (
-                      <div className='flex items-center justify-between text-[#00000080]'>
-                        <div>
-                          <p className='text-sm'>Coupon: OYOFESTIVE50</p>
-                        </div>
-                        <div>
-                          <h5 className='text-base font-bold'>-₹1670</h5>
-                        </div>
-                      </div>
-                    )}
                   </div>
-                  <div className='text-[#222] border-l border-r border-b border-color8 px-4 py-[10px] flex items-center justify-between'>
-                    <div>
-                      <p className='text-base font-bold'>
-                        Total payable amount
-                      </p>
+                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>Discount</p>
+                      <p className='text-sm'>-₹1370</p>
                     </div>
-                    <div>
-                      <h5 className='text-[32px] font-bold'>₹1670</h5>
+                  </div>
+                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>Total payable amount</p>
+                      <p className='text-sm'>₹1670</p>
+                    </div>
+                  </div>
+                  <div className='border border-color8 px-4 py-[10px]'>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>Collected by Hotel</p>
+                      <p className='text-sm'>-₹0</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div
+                onClick={() => {
+                  setExpend2(!expend2);
+                  setExpend(false);
+                }}
+                className='cursor-pointer border border-color8 px-4 py-[10px] flex items-center justify-between'>
+                <div>
+                  <p className='text-base'>You saved</p>
+                </div>
+                <div className='flex items-center gap-3'>
+                  <h5 className='text-base font-bold'>₹1370</h5>
+                  {expend2 ? (
+                    <IoIosArrowUp className='text-sm' />
+                  ) : (
+                    <IoIosArrowDown className='text-sm' />
+                  )}
+                </div>
+              </div>
+              {expend2 && (
+                <div>
+                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>Price</p>
+                      <p className='text-sm'>₹2740</p>
+                    </div>
+                  </div>
+                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>Discount</p>
+                      <p className='text-sm'>-₹1370</p>
                     </div>
                   </div>
                 </div>
@@ -237,81 +208,14 @@ const PrintPage = () => {
             </div>
           </div>
         </div>
-        <div className='pb-[26px] px-[32px]'>
-          <div className='pt-4 pb-8 text-[#222]'>
-            <div className='px-4 flex items-center'>
-              <div className='max-w-[60%] flex-1'>
-                <p className='text-sm leading-7'>
-                  Your payment option is Pay At Hotel. You will receive a call
-                  from us closer to the check-in date to confirm your arrival.
-                  In case of no response, the booking may be cancelled. Pay
-                  ₹1670 online now for a smoother check-in experience.
-                </p>
-              </div>
-              <div className='max-w-[40%] flex-1'>
-                <button className='flex items-center gap-1 justify-center rounded bg-[#1ab64f] text-color4 py-[10px] w-full text-center max-w-[60%] mx-auto'>
-                  <span className='text-base font-semibold'>Pay Now</span>
-                  <IoIosArrowDown className='text-xs' />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className='m-4'>
-            <Image
-              src={OYOBanner}
-              alt=''
-              width={500}
-              height={200}
-              className='w-full h-full rounded-md cursor-pointer'
-            />
-          </div>
-          <div className='flex pt-[18px] text-[#222]'>
-            <div className='flex-1 max-w-[50%]'>
-              <h4 className='text-lg font-bold'>Things to Know</h4>
-            </div>
-            <div className='flex-1 max-w-[50%] p-5'>
-              <p className='text-sm font-bold'>
-                Something not right?{" "}
-                <span className='text-[#ee2a24] text-base cursor-pointer'>
-                  Chat with us
-                </span>{" "}
-                for help.
-              </p>
-              <p className='text-base font-semibold text-[#ee2a24] mt-2 cursor-pointer'>
-                Cancel Booking
-              </p>
-              <p className='text-base font-semibold text-[#ee2a24] mt-4 cursor-pointer'>
-                Read OYO&apos;s Terms and Condition
-              </p>
-            </div>
-          </div>
+        <div className='py-[26px] px-[32px]'>
+          <Image
+            src={OYOBanner}
+            className='w-full h-auto object-contain'
+            alt='OYO Banner'
+          />
         </div>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        // onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel='Example Modal'>
-        {pdfUrl && (
-          <div>
-            <iframe src={pdfUrl} width='100%' height='700px' />
-            <div className='bg-[#525659] flex justify-end gap-5 px-[150px] py-2'>
-              <a
-                className='px-8 font-medium py-2 border-none rounded-3xl text-[#047db7] bg-[#a8c7fa]'
-                href={pdfUrl}
-                download='webpage.pdf'>
-                Print
-              </a>
-              <button
-                className='border font-medium cursor-pointer border-[#047db7] text-[#a8c7fa] px-5 py-2 rounded-full'
-                onClick={() => setModalIsOpen(false)}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 };
