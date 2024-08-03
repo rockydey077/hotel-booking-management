@@ -124,7 +124,7 @@ const PrintPage = () => {
             <div>
               <h3 className='text-lg font-bold mb-6'>Payment Details</h3>
             </div>
-            <div>
+            <div className=''>
               <div
                 onClick={() => {
                   setExpend(!expend);
@@ -145,62 +145,54 @@ const PrintPage = () => {
               </div>
               {expend && (
                 <div>
-                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>Original price</p>
-                      <p className='text-sm'>₹2740</p>
+                  <div className='border-l border-r border-color8 px-4 py-[10px] flex items-center justify-between'>
+                    <div>
+                      <p className='text-sm'>Room charges for</p>
+                    </div>
+                    <div>
+                      <p className='text-sm'>1 Room x 1 Night</p>
+                    </div>
+                    <div>
+                      <h5 className='text-base font-bold'>₹3340</h5>
                     </div>
                   </div>
-                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
+                  <div
+                    onClick={() => setExpend2(!expend2)}
+                    className={`border cursor-pointer border-color8 px-4 py-[10px] ${
+                      expend2 && "space-y-5"
+                    }`}>
                     <div className='flex items-center justify-between'>
-                      <p className='text-sm'>Discount</p>
-                      <p className='text-sm'>-₹1370</p>
+                      <div className='flex items-center gap-3'>
+                        <p className='text-sm'>Discounts</p>
+                        {expend2 ? (
+                          <IoIosArrowUp className='text-sm' />
+                        ) : (
+                          <IoIosArrowDown className='text-sm' />
+                        )}
+                      </div>
+                      <div>
+                        <h5 className='text-base font-bold'>-₹1670</h5>
+                      </div>
                     </div>
+                    {expend2 && (
+                      <div className='flex items-center justify-between text-[#00000080]'>
+                        <div>
+                          <p className='text-sm'>Coupon: OYOFESTIVE50</p>
+                        </div>
+                        <div>
+                          <h5 className='text-base font-bold'>-₹1670</h5>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>Total payable amount</p>
-                      <p className='text-sm'>₹1670</p>
+                  <div className='text-[#222] border-l border-r border-b border-color8 px-4 py-[10px] flex items-center justify-between'>
+                    <div>
+                      <p className='text-base font-bold'>
+                        Total payable amount
+                      </p>
                     </div>
-                  </div>
-                  <div className='border border-color8 px-4 py-[10px]'>
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>Collected by Hotel</p>
-                      <p className='text-sm'>-₹0</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-              <div
-                onClick={() => {
-                  setExpend2(!expend2);
-                  setExpend(false);
-                }}
-                className='cursor-pointer border border-color8 px-4 py-[10px] flex items-center justify-between'>
-                <div>
-                  <p className='text-base'>You saved</p>
-                </div>
-                <div className='flex items-center gap-3'>
-                  <h5 className='text-base font-bold'>₹1370</h5>
-                  {expend2 ? (
-                    <IoIosArrowUp className='text-sm' />
-                  ) : (
-                    <IoIosArrowDown className='text-sm' />
-                  )}
-                </div>
-              </div>
-              {expend2 && (
-                <div>
-                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>Price</p>
-                      <p className='text-sm'>₹2740</p>
-                    </div>
-                  </div>
-                  <div className='border-l border-r border-color8 px-4 py-[10px]'>
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>Discount</p>
-                      <p className='text-sm'>-₹1370</p>
+                    <div>
+                      <h5 className='text-[32px] font-bold'>₹1670</h5>
                     </div>
                   </div>
                 </div>
@@ -208,12 +200,54 @@ const PrintPage = () => {
             </div>
           </div>
         </div>
-        <div className='py-[26px] px-[32px]'>
-          <Image
-            src={OYOBanner}
-            className='w-full h-auto object-contain'
-            alt='OYO Banner'
-          />
+        <div className='pb-[26px] px-[32px]'>
+          <div className='pt-4 pb-8 text-[#222]'>
+            <div className='px-4 flex items-center'>
+              <div className='max-w-[60%] flex-1'>
+                <p className='text-sm leading-7'>
+                  Your payment option is Pay At Hotel. You will receive a call
+                  from us closer to the check-in date to confirm your arrival.
+                  In case of no response, the booking may be cancelled. Pay
+                  ₹1670 online now for a smoother check-in experience.
+                </p>
+              </div>
+              <div className='max-w-[40%] flex-1'>
+                <button className='flex items-center gap-1 justify-center rounded bg-[#1ab64f] text-color4 py-[10px] w-full text-center max-w-[60%] mx-auto'>
+                  <span className='text-base font-semibold'>Pay Now</span>
+                  <IoIosArrowDown className='text-xs' />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className='m-4'>
+            <Image
+              src={OYOBanner}
+              alt=''
+              width={500}
+              height={200}
+              className='w-full h-full rounded-md cursor-pointer'
+            />
+          </div>
+          <div className='flex pt-[18px] text-[#222]'>
+            <div className='flex-1 max-w-[50%]'>
+              <h4 className='text-lg font-bold'>Things to Know</h4>
+            </div>
+            <div className='flex-1 max-w-[50%] p-5'>
+              <p className='text-sm font-bold'>
+                Something not right?{" "}
+                <span className='text-[#ee2a24] text-base cursor-pointer'>
+                  Chat with us
+                </span>{" "}
+                for help.
+              </p>
+              <p className='text-base font-semibold text-[#ee2a24] mt-2 cursor-pointer'>
+                Cancel Booking
+              </p>
+              <p className='text-base font-semibold text-[#ee2a24] mt-4 cursor-pointer'>
+                Read OYO&apos;s Terms and Condition
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
