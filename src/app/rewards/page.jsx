@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaStar } from "react-icons/fa6";
 import medal from "../../../public/assets/icons/medal.png";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -70,6 +70,16 @@ const redeems = [
 const RewardPage = () => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleNext = () => {
     swiperRef.current.swiper.slideNext();
@@ -78,9 +88,6 @@ const RewardPage = () => {
   const handlePrev = () => {
     swiperRef.current.swiper.slidePrev();
   };
-
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-  console.log(isMobile);
 
   return (
     <div className='max-w-screen-xl mx-auto'>
