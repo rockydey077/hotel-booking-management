@@ -91,14 +91,14 @@ const RewardPage = () => {
         />
       </div>
       <div className='bg-[#F8F4F2] p-5'>
-        <div className='flex gap-[2%]'>
-          <div className='w-[34%]'>
+        <div className='flex flex-col lg:flex-row gap-6 lg:gap-[2%]'>
+          <div className='w-full lg:w-[34%]'>
             <h4 className='text-2xl font-bold mb-5'>My Points</h4>
             <div className='bg-[#fff] p-5 rounded-2xl h-[286px] flex justify-center items-center'>
               <MyPoints />
             </div>
           </div>
-          <div className='w-[64%]'>
+          <div className='w-full lg:w-[64%]'>
             <h4 className='text-2xl font-bold mb-5'>Earn more points</h4>
             <div className='bg-[#fff] p-5 rounded-2xl'>
               <MorePoints />
@@ -123,9 +123,14 @@ const RewardPage = () => {
           </div>
           <div>
             <Swiper
+              breakpoints={{
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+              }}
               ref={swiperRef}
-              slidesPerView={4}
-              spaceBetween={30}
+              slidesPerView={1}
               loop={true}
               //   pagination={{
               //     clickable: true,
@@ -134,7 +139,7 @@ const RewardPage = () => {
               className='mySwiper'>
               {redeems.map((redeem) => (
                 <SwiperSlide key={redeem.id}>
-                  <div className='bg-[#fff]'>
+                  <div className='bg-[#fff] rounded-xl'>
                     <div>
                       <Image
                         width={200}
