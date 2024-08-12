@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaStar } from "react-icons/fa6";
 import medal from "../../../public/assets/icons/medal.png";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -69,6 +69,7 @@ const redeems = [
 
 const RewardPage = () => {
   const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleNext = () => {
     swiperRef.current.swiper.slideNext();
@@ -77,6 +78,10 @@ const RewardPage = () => {
   const handlePrev = () => {
     swiperRef.current.swiper.slidePrev();
   };
+
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  console.log(isMobile);
+
   return (
     <div className='max-w-screen-xl mx-auto'>
       {/* heading part */}
@@ -110,13 +115,19 @@ const RewardPage = () => {
             <h4 className='text-2xl font-bold'>Redeem</h4>
             <div className='space-x-3'>
               <button
+                disabled={activeIndex === 0}
                 onClick={handlePrev}
-                className='p-3 bg-[#fff] shadow-md rounded-xl'>
+                className='p-3 bg-[#fff] shadow-md rounded-xl disabled:bg-[#EBEBE4] disabled:text-color8 disabled:cursor-default'>
                 <FaAngleLeft />
               </button>
               <button
+                disabled={
+                  isMobile
+                    ? activeIndex === redeems.length - 1
+                    : activeIndex === redeems.length / 4 - 1
+                }
                 onClick={handleNext}
-                className='p-3 bg-[#fff] shadow-md rounded-xl'>
+                className='p-3 bg-[#fff] shadow-md rounded-xl disabled:bg-[#EBEBE4] disabled:text-color8 disabled:cursor-default'>
                 <FaAngleRight />
               </button>
             </div>
@@ -124,14 +135,16 @@ const RewardPage = () => {
           <div>
             <Swiper
               breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                },
                 1024: {
                   slidesPerView: 4,
                   spaceBetween: 30,
                 },
               }}
               ref={swiperRef}
-              slidesPerView={1}
-              loop={true}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               //   pagination={{
               //     clickable: true,
               //   }}
