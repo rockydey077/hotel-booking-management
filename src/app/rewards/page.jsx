@@ -131,7 +131,7 @@ const RewardPage = () => {
                 disabled={
                   isMobile
                     ? activeIndex === redeems.length - 1
-                    : activeIndex === redeems.length / 4 - 1
+                    : activeIndex === redeems.length / 2 
                 }
                 onClick={handleNext}
                 className='p-3 bg-[#fff] shadow-md rounded-xl disabled:bg-[#EBEBE4] disabled:text-color8 disabled:cursor-default'>
