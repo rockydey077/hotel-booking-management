@@ -51,3 +51,12 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+.wrapper {
+  padding-right: 30px; 
+  appearance: none;
+  -webkit-appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
+    no-repeat right 10px center;
+  background-size: 20px 20px;
+}

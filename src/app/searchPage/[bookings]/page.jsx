@@ -580,22 +580,38 @@ const BookingPage = ({ params }) => {
                     We will use these details to share your booking information
                   </p>
                   <div className='w-full'>
+                    <div className='grid grid-cols-2 gap-7 items-end'>
+                      <div>
+                        <label
+                          htmlFor='name'
+                          className='block text-base font-semibold mb-[10px]'>
+                          Full Name
+                        </label>
+                        <input
+                          className='text-[#000000de] font-semibold outline-none rounded-sm border py-[13px] pl-4 w-full mb-4 border-[#a6a6a639]'
+                          type='text'
+                          name='name'
+                          id='name'
+                          defaultValue='Cold'
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor='name'
+                          className='block text-base font-semibold mb-[10px]'>
+                          Document Type
+                        </label>
+                        <select
+                          className='wrapper text-[#000000de] font-semibold outline-none rounded-sm border py-[13px] pl-4 w-full mb-4 border-[#a6a6a639]'
+                          name='document'
+                          id='document'>
+                          <option value='nid'>NID</option>
+                          <option value='passport'>PASSPORT</option>
+                        </select>
+                      </div>
+                    </div>
                     <div className='flex gap-[4%]'>
                       <div className='max-w-[48%] flex-1'>
-                        <div>
-                          <label
-                            htmlFor='name'
-                            className='block text-base font-semibold mb-[10px]'>
-                            Full Name
-                          </label>
-                          <input
-                            className='text-[#000000de] font-semibold outline-none rounded-sm border py-[13px] pl-4 w-full mb-4 border-[#a6a6a639]'
-                            type='text'
-                            name='name'
-                            id='name'
-                            defaultValue='Cold'
-                          />
-                        </div>
                         <div>
                           <label
                             htmlFor='email'
@@ -609,6 +625,30 @@ const BookingPage = ({ params }) => {
                             id='email'
                             defaultValue='rocky@dey.com'
                           />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor='number'
+                            className='block text-base font-semibold mb-[10px]'>
+                            Mobile Number
+                          </label>
+                          <div className='text-[#000000de] relative font-semibold outline-none rounded-sm border py-[13px] pl-4 w-full border-[#a6a6a639] flex'>
+                            <p className='flex items-center gap-2 cursor-pointer'>
+                              <span className='underline'>+1</span>{" "}
+                              <MdKeyboardArrowDown className='text-2xl text-[#a6a6a66d]' />
+                            </p>
+                            <input
+                              className='border-l outline-none border-[#a6a6a66d] pl-2 ml-2'
+                              type='text'
+                              name='number'
+                              id='number'
+                              defaultValue='7543074253'
+                            />
+                            <p className='flex absolute top-[35%] right-5 items-center text-xs font-semibold gap-1 text-[#1ab64f]'>
+                              <SiTicktick />
+                              <span>Verified</span>
+                            </p>
+                          </div>
                         </div>
                       </div>
                       <div className='max-w-[48%] flex-1'>
@@ -682,31 +722,8 @@ const BookingPage = ({ params }) => {
                         </div>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2 gap-7 items-end'>
-                      <div>
-                        <label
-                          htmlFor='number'
-                          className='block text-base font-semibold mb-[10px]'>
-                          Mobile Number
-                        </label>
-                        <div className='text-[#000000de] relative font-semibold outline-none rounded-sm border py-[13px] pl-4 w-full border-[#a6a6a639] flex'>
-                          <p className='flex items-center gap-2 cursor-pointer'>
-                            <span className='underline'>+1</span>{" "}
-                            <MdKeyboardArrowDown className='text-2xl text-[#a6a6a66d]' />
-                          </p>
-                          <input
-                            className='border-l outline-none border-[#a6a6a66d] pl-2 ml-2'
-                            type='text'
-                            name='number'
-                            id='number'
-                            defaultValue='7543074253'
-                          />
-                          <p className='flex absolute top-[35%] right-5 items-center text-xs font-semibold gap-1 text-[#1ab64f]'>
-                            <SiTicktick />
-                            <span>Verified</span>
-                          </p>
-                        </div>
-                      </div>
+                    {/* Pay now button */}
+                    <div className='grid grid-cols-2 gap-7 items-end mt-4'>
                       <div>
                         <button
                           onClick={() => setShow(true)}
@@ -714,6 +731,7 @@ const BookingPage = ({ params }) => {
                           Pay Now
                         </button>
                       </div>
+                      <div></div>
                     </div>
                   </div>
                 </div>
