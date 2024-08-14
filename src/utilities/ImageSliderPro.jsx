@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -14,13 +14,25 @@ const ImageSliderPro = ({ room }) => {
   const { images } = room;
   const [imageShow, setImageShow] = useState(images);
   const [activeCategory, setActiveCategory] = useState("room");
+  const [roomCall, setRoomCall] = useState(false);
+  const [washroomCall, setWashroomCall] = useState(false);
   const roomLength = images?.filter((img) => img.category === "bedroom").length;
   const washroomLength = images?.filter(
     (img) => img.category === "washroom"
   ).length;
-  console.log(imageShow);
   const swiperRef = useRef(null);
   const swiperRef2 = useRef(null);
+
+  useEffect(() => {
+    if (roomCall) {
+      handleRoom();
+      setRoomCall(false);
+    }
+    if (washroomCall) {
+      handleWashroom();
+      setWashroomCall(false);
+    }
+  }, [roomCall, washroomCall]);
 
   const handleRoom = () => {
     const roomImage = imageShow.filter((image) => image.category === "bedroom");
@@ -44,11 +56,20 @@ const ImageSliderPro = ({ room }) => {
     swiperRef2.current.slideTo(0, 0);
   };
 
+  const handleActiveCategory = (value) => {
+    setActiveCategory(value);
+    if (value === "room") {
+      setRoomCall(true);
+    } else {
+      setWashroomCall(true);
+    }
+  };
+
   const handleSlideChange = (swiper) => {
     const image = imageShow[swiper.realIndex];
-    if (image.category === "bedroom") {
+    if (!washroomCall && image.category === "bedroom") {
       setActiveCategory("room");
-    } else {
+    } else if (!roomCall && image.category === "washroom") {
       setActiveCategory("washroom");
     }
   };
@@ -59,8 +80,8 @@ const ImageSliderPro = ({ room }) => {
         <div role='tablist' className='font-semibold'>
           <a
             onClick={() => {
-              setActiveCategory("room");
-              handleRoom();
+              handleActiveCategory("room");
+              // handleRoom();
             }}
             role='tab'
             className={`${
@@ -70,8 +91,8 @@ const ImageSliderPro = ({ room }) => {
           </a>
           <a
             onClick={() => {
-              setActiveCategory("washroom");
-              handleWashroom();
+              handleActiveCategory("washroom");
+              // handleWashroom();
             }}
             role='tab'
             className={`${
